@@ -7,7 +7,7 @@ function MenuManager()
         <div className="container">
             <h1>Menu Manager</h1>
 
-            <div>
+            <div className="flex-row-wrap center-items">
                 <MenuItemCard />
                 <MenuItemCard />
                 <MenuItemCard />

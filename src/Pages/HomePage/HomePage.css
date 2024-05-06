@@ -1,0 +1,56 @@
+.welcome{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.video-overlays{
+    position:absolute;
+}
+
+.welcome-logo{
+    height: 50vh;
+}
+
+.rest_video{
+    object-fit: cover;
+    height: 100vh;
+    width: 100%;
+}
+
+.menu-section{
+    background-image: url("../../StaticMedia/spaghetti1.jpeg");
+    background-attachment:fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+    height: 25rem;
+}
+
+.inner-menu-section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.shader{
+    background-color: rgba(0, 0, 0, .6);
+    height: 100%;
+    width: 100%;
+    color: whitesmoke;
+}
+
+.menu-btn{
+    border: double;
+    border-width: 10px;
+    background-color: inherit;
+    color: white;
+    border-color: blanchedalmond;
+}
+
+.menu-btn:hover{
+    background-color: rgb(255, 235, 205);
+    border-color: rgb(44, 44, 44);
+}
