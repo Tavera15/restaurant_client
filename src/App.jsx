@@ -4,6 +4,7 @@ import './App.css'
 import HomePage from './Pages/HomePage/HomePage'
 import CategoryManager from './Pages/AdminPages/CategoryManager';
 import MenuManager from './Pages/AdminPages/MenuItemManager';
+import Footer from './Components/Footer';
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
           <Route exact path='/Manager/Menu' element={<MenuManager />}></Route>
 
         </Routes>
+        <Footer />
       </Router>
     </div>
   )

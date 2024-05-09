@@ -35,7 +35,7 @@ function HomePage()
             </div>
 
             <div className="p-4">
-                <h1>Live Music</h1>
+                <h1>Live Performances</h1>
                 <hr />
                 <div className="container flex-row-wrap center-items">
                     <div className="col-12 col-md-4 p-2">
