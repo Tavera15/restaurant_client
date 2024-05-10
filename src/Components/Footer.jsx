@@ -4,7 +4,7 @@ import logo from "../StaticMedia/TheGuyLogo.png";
 function Footer()
 {
     return(
-        <div className="p-4 flex-row-wrap center-items">
+        <div className="bg-dark p-4 flex-row-wrap center-items">
 
             <div className="col-12 col-md-4">
                 <h4>123 Plaeground Stret</h4>
