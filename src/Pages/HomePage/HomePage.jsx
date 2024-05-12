@@ -71,6 +71,39 @@ function HomePage()
                             </Card.Body>
                         </Card>
                     </div>
+                    <div className="col-12 col-md-4 p-2">
+                        <Card className="">
+                            <Card.Img variant="top" src="https://static.animecorner.me/2022/02/SiM_ArtistPhotos-1.jpg" />
+                            <Card.Body className="bg-dark">
+                                <Card.Title>SiM</Card.Title>
+                                <Card.Text>
+                                May 5
+                                </Card.Text>
+                            </Card.Body>
+                        </Card>
+                    </div>
+                    <div className="col-12 col-md-4 p-2">
+                        <Card className="">
+                            <Card.Img variant="top" src="https://static.animecorner.me/2022/02/SiM_ArtistPhotos-1.jpg" />
+                            <Card.Body className="bg-dark">
+                                <Card.Title>SiM</Card.Title>
+                                <Card.Text>
+                                May 5
+                                </Card.Text>
+                            </Card.Body>
+                        </Card>
+                    </div>
+                    <div className="col-12 col-md-4 p-2">
+                        <Card className="">
+                            <Card.Img variant="top" src="https://static.animecorner.me/2022/02/SiM_ArtistPhotos-1.jpg" />
+                            <Card.Body className="bg-dark">
+                                <Card.Title>SiM</Card.Title>
+                                <Card.Text>
+                                May 5
+                                </Card.Text>
+                            </Card.Body>
+                        </Card>
+                    </div>
                 </div>
             </div>
 
