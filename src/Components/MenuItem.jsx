@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card, Button } from "react-bootstrap";
+import { Card, Button, Form } from "react-bootstrap";
 
 function MenuItem()
 {
@@ -19,7 +19,7 @@ function MenuItem()
                     <Card.Text>
                         $5.00
                     </Card.Text>
-                    <form className="form-group col-12">
+                    <Form className="form-group col-12">
                         <Button className="col-12" variant="outline-light" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">Add to cart</Button>
 
                         <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -33,15 +33,30 @@ function MenuItem()
                             </div>
                             <div className="modal-body">
                                 <Card.Img variant="top" src="holder.js/100px180" />
-                                <div className="form-check">
-                                    <input className="form-check-input" onChange={(e) => setSizeSel(e.target.value)} type="radio" name="size" id="size1" value="M" />
-                                    <label className="form-check-label" htmlFor="size1">M</label>
+
+                                <div>
+                                    <h3 className="m-0 mt-2">Sizing</h3>
+                                    <div className=" d-flex justify-content-scenter align-items-center flex-column">
+                                        <div className="p-3 d-flex flex-column justify-content-start align-items-start">
+                                            <Form.Check
+                                                className="d-flsex"
+                                                type="radio"
+                                                id="size1"
+                                                label="Medium"
+                                                name="size"
+                                            />
+                                            <Form.Check
+                                                className="d-fslex"
+                                                type="radio"
+                                                id="size2"
+                                                label="Large"
+                                                name="size"
+                                            />
+                                        </div>
+                                    </div>
+                                    <hr />
                                 </div>
-                                <div className="form-check">
-                                    <input className="form-check-input" onChange={(e) => setSizeSel(e.target.value)} type="radio" name="size" id="size2" value="L" />
-                                    <label className="form-check-label" htmlFor="size2">L</label>
-                                </div>
-                                ...
+                                
                             </div>
                             <div className="modal-footer">
                                 <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -50,7 +65,7 @@ function MenuItem()
                             </div>
                         </div>
                         </div>
-                    </form>
+                    </Form>
                 </Card.Body>
             </Card>
         </div>
