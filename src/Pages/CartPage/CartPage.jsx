@@ -1,10 +1,13 @@
 import React from "react";
 import CartItem from "../../Components/CartItem";
+import MainNavBar from "../../Components/MainNavBar";
 
 function CartPage()
 {
     return(
-        <div className="container py-4 center-itexms flex-row-wrap">
+        <div>
+            <MainNavBar />
+            <div className="container py-4 center-itexms flex-row-wrap">
                 <div className="col-12 col-md-8 cart" >
                     <div className="title">
                         <div className="">
@@ -31,7 +34,7 @@ function CartPage()
                     <button className="btn">CHECKOUT</button>
                 </div>
             </div>
-            
+        </div>
     );
 }
 

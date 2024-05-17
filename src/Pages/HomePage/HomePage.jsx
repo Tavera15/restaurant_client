@@ -5,11 +5,13 @@ import "./HomePage.css";
 import { Link } from "react-router-dom";
 import { Card } from "react-bootstrap";
 import spaghetti from "../../StaticMedia/spaghetti1.jpeg";
+import MainNavBar from "../../Components/MainNavBar";
 
 function HomePage()
 {
     return(
         <div className="" >
+            <MainNavBar />
             <div className="welcome">
                 <div className="video-overlays">
                     <img className="welcome-logo" alt="welcome-logo" src={logo} />
