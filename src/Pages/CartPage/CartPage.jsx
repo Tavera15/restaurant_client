@@ -1,11 +1,12 @@
 import React from "react";
 import CartItem from "../../Components/CartItem";
 import MainNavBar from "../../Components/MainNavBar";
+import { Button } from "react-bootstrap";
 
 function CartPage()
 {
     return(
-        <div>
+        <div className="min-vh-100">
             <MainNavBar />
             <div className="container py-4 center-itexms flex-row-wrap">
                 <div className="col-12 col-md-8 cart" >
@@ -15,7 +16,6 @@ function CartPage()
                         </div>
                     </div>    
                     
-                    <CartItem />
                     <CartItem />
                     <CartItem />
                     <CartItem />
@@ -31,7 +31,10 @@ function CartPage()
                         <div className="col">TOTAL PRICE</div>
                         <div className="col text-right">&euro; 137.00</div>
                     </div>
-                    <button className="btn">CHECKOUT</button>
+                    <div class="my-4 d-flex btn-group-justified justify-content-evenly">
+                        <Button className="btn" variant="outline-danger" style={{width: "7rem"}}>Clear</Button>
+                        <Button className="btn" variant="outline-success" style={{width: "7rem"}}>Checkout</Button>
+                    </div>
                 </div>
             </div>
         </div>

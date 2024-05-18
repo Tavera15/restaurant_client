@@ -1,0 +1,8 @@
+
+.signin-bg{
+    background-image: url("https://images.pexels.com/photos/5490897/pexels-photo-5490897.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    min-height: 92vh;
+}

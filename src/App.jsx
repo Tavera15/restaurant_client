@@ -6,6 +6,7 @@ import MenuManager from './Pages/AdminPages/MenuItemManager';
 import Footer from './Components/Footer';
 import MenuPage from "./Pages/MenuPage/MenuPage";
 import CartPage from "./Pages/CartPage/CartPage";
+import SignInPage from "./Pages/SignInPage/SignInPage";
 
 function App() {
 
@@ -18,7 +19,9 @@ function App() {
 
           <Route exact path='/Menu' element={<MenuPage />} />
 
-          <Route exact path='/cart' element={<CartPage />} />
+          <Route exact path='/Cart' element={<CartPage />} />
+
+          <Route exact path="/Account" element={<SignInPage />} />
 
           <Route exact path='/Manager/Category' element={<CategoryManager />}></Route>
 
