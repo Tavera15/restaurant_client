@@ -30,6 +30,12 @@
     flex-wrap: wrap;
   }
 
+  .flex-col-wrap{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+
   .center-items{
     justify-content: center;
     align-items: center;
@@ -39,5 +45,5 @@
     background-color: rgba(0, 0, 0, .55);
     height: inherit;
     width: 100%;
-    color: whitesmoke;
+    color: blanchedalmond;
 }

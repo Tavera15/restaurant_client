@@ -31,7 +31,7 @@ function CartPage()
                         <div className="col">TOTAL PRICE</div>
                         <div className="col text-right">&euro; 137.00</div>
                     </div>
-                    <div class="my-4 d-flex btn-group-justified justify-content-evenly">
+                    <div className="my-4 d-flex btn-group-justified justify-content-evenly">
                         <Button className="btn" variant="outline-danger" style={{width: "7rem"}}>Clear</Button>
                         <Button className="btn" variant="outline-success" style={{width: "7rem"}}>Checkout</Button>
                     </div>
