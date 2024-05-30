@@ -7,6 +7,7 @@ import Footer from './Components/Footer';
 import MenuPage from "./Pages/MenuPage/MenuPage";
 import CartPage from "./Pages/CartPage/CartPage";
 import SignInPage from "./Pages/SignInPage/SignInPage";
+import ProfilePage from "./Pages/AccountPage/ProfilePage";
 
 function App() {
 
@@ -21,11 +22,13 @@ function App() {
 
           <Route exact path='/Cart' element={<CartPage />} />
 
-          <Route exact path="/Account" element={<SignInPage />} />
+          <Route exact path="/Login" element={<SignInPage />} />
 
           <Route exact path='/Manager/Category' element={<CategoryManager />}></Route>
 
           <Route exact path='/Manager/Menu' element={<MenuManager />}></Route>
+
+          <Route exact path="Account/Profile" element={<ProfilePage />} />
 
         </Routes>
         <Footer />

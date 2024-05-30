@@ -15,7 +15,7 @@ function MenuPage()
                         style={{height: "24rem", objectFit: "cover", backgroundColor: "rgba(0,0,0,.5)", filter: "blur(0.4px) brightness(64%)"}} 
                     />
 
-                    <div className="  flex-row-wrap center-items food-items" >
+                    <div className="flex-row-wrap center-items food-items" >
                         <MenuItem />
                         <MenuItem />
                         <MenuItem />

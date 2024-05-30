@@ -12,12 +12,11 @@ function MainNavBar()
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="me-auto">
-                    <Link className="nav-link" to="/Menu">Menu</Link>
-                    <Link className="nav-link" to="/Contact">Contact</Link>
                 </Nav>
                 <Nav >
+                    <Link className="nav-link" to="/Menu">Menu</Link>
                     <Link className="nav-link" to="/Cart">Cart</Link>
-                    <Link className="nav-link" to="/Account">Account</Link>
+                    <Link className="nav-link" to="/Account/Profile">Account</Link>
                 </Nav>
                 </Navbar.Collapse>
             </Container>
