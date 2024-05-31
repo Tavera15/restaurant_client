@@ -29,11 +29,11 @@ function AccountNav()
     
                             <hr />
     
-                            <Link to="/"className="col-12 nav-link mb-2">
+                            <Link to="/Account/Profile"className="col-12 nav-link mb-2">
                                 <p className="fs-4">Profile</p>
                             </Link>
     
-                            <Link to="/" className="col-12 nav-link mb-2">
+                            <Link to="/Account/Orders" className="col-12 nav-link mb-2">
                                 <p className="fs-4">Orders</p>
                             </Link>
     

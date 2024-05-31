@@ -8,6 +8,7 @@ import MenuPage from "./Pages/MenuPage/MenuPage";
 import CartPage from "./Pages/CartPage/CartPage";
 import SignInPage from "./Pages/SignInPage/SignInPage";
 import ProfilePage from "./Pages/AccountPage/ProfilePage";
+import OrdersPage from "./Pages/OrdersPage/OrdersPage";
 
 function App() {
 
@@ -28,7 +29,9 @@ function App() {
 
           <Route exact path='/Manager/Menu' element={<MenuManager />}></Route>
 
-          <Route exact path="Account/Profile" element={<ProfilePage />} />
+          <Route exact path="/Account/Profile" element={<ProfilePage />} />
+
+          <Route exact path="/Account/Orders" element={<OrdersPage />} />
 
         </Routes>
         <Footer />
