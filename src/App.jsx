@@ -33,6 +33,8 @@ function App() {
 
           <Route exact path="/Account/Orders" element={<OrdersPage />} />
 
+          <Route exact path="/Admin/Menu" element={<MenuManager />} />
+
         </Routes>
         <Footer />
       </Router>

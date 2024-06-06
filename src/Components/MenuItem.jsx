@@ -39,14 +39,12 @@ function MenuItem()
                                     <div className=" d-flex justify-content-scenter align-items-center flex-column">
                                         <div className="p-3 d-flex flex-column justify-content-start align-items-start">
                                             <Form.Check
-                                                className="d-flsex"
                                                 type="radio"
                                                 id="size1"
                                                 label="Medium"
                                                 name="size"
                                             />
                                             <Form.Check
-                                                className="d-fslex"
                                                 type="radio"
                                                 id="size2"
                                                 label="Large"
@@ -59,8 +57,8 @@ function MenuItem()
                                 
                             </div>
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" className="btn btn-primary" data-bs-dismiss="modal">Add To Cart</button>
+                                <Button variant="secondary" data-bs-dismiss="modal">Close</Button>
+                                <Button variant="primary" data-bs-dismiss="modal">Add To Cart</Button>
                             </div>
                             </div>
                         </div>

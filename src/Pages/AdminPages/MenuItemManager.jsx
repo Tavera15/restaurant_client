@@ -1,5 +1,7 @@
 import React from "react";
 import MenuItemCard from "../../Components/MenuItemCard";
+import MenuItem from "../../Components/MenuItem";
+import AdminMenuItem from "../../Components/AdminMenuItem";
 
 function MenuManager()
 {
@@ -8,10 +10,10 @@ function MenuManager()
             <h1>Menu Manager</h1>
 
             <div className="flex-row-wrap center-items">
-                <MenuItemCard />
-                <MenuItemCard />
-                <MenuItemCard />
-                <MenuItemCard />
+                <AdminMenuItem />
+                <AdminMenuItem />
+                <AdminMenuItem />
+                <AdminMenuItem />
             </div>
         </div>
     );
