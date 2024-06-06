@@ -25,8 +25,6 @@ function App() {
 
           <Route exact path="/Login" element={<SignInPage />} />
 
-          <Route exact path='/Manager/Category' element={<CategoryManager />}></Route>
-
           <Route exact path='/Manager/Menu' element={<MenuManager />}></Route>
 
           <Route exact path="/Account/Profile" element={<ProfilePage />} />
@@ -34,6 +32,8 @@ function App() {
           <Route exact path="/Account/Orders" element={<OrdersPage />} />
 
           <Route exact path="/Admin/Menu" element={<MenuManager />} />
+
+          <Route exact path='/Admin/Category' element={<CategoryManager />}></Route>
 
         </Routes>
         <Footer />
