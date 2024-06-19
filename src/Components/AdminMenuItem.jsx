@@ -20,9 +20,9 @@ function AdminMenuItem({num, key})
                     <Form className="form-group col-12">
 
                         <Button className="col-6" variant="primary" data-bs-toggle="modal" data-bs-target={`#menuItemFormModal${num}`}>Edit</Button>
-                        <Button className="col-6" variant="outline-danger" data-bs-toggle="modal" data-bs-target={`#confirmDeleteModal${num}`}>Delete</Button>
-
                         <MenuItemForm btnText={"Update"} num={num} />
+
+                        <Button className="col-6" variant="outline-danger" data-bs-toggle="modal" data-bs-target={`#confirmDeleteModal${num}`}>Delete</Button>
                         <DeleteMenuItemForm num={num} />
                         
                     </Form>

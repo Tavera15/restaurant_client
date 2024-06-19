@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import menuVideo from "../../StaticMedia/MenuVid.mp4";
 import MenuItem from "../../Components/MenuItem";
 import MenuNav from "../../Components/MenuNav";
+import axios from "axios";
 
 function MenuPage()
 {
+    const [menuItems, setMenuItems] = useState([]);
+
+    useEffect(() => {
+        axios.get(import.meta.env.VITE_SERVER_API + "/MenuItem/")
+            .then((res) => setMenuItems(res.data))
+    }, [])
+
     return(
         <div className="container-fluid flex-row-wrap center-items">
             <div className="row align-items-start">
@@ -16,16 +24,11 @@ function MenuPage()
                     />
 
                     <div className="flex-row-wrap center-items food-items" >
-                        <MenuItem />
-                        <MenuItem />
-                        <MenuItem />
-                        <MenuItem />
-                        <MenuItem />
-                        <MenuItem />
-                        <MenuItem />
-                        <MenuItem />
-                        <MenuItem />
-                        <MenuItem />
+                        {
+                            menuItems.map((m, i) => {
+                                return <MenuItem key={i}/>
+                            })
+                        }
                     </div>
                 </div>
             </div>

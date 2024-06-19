@@ -18,8 +18,7 @@ function DeleteMenuItemForm({num})
                         <p>Are you sure you want to delete this menu item?</p>
 
                         <div className="modal-footer">
-                            <Button type="button" variant="secondary" data-bs-dismiss="modal">Close</Button>
-                            <Button type="button" variant="danger" data-bs-dismiss="modal">Delete</Button>
+                            <Button type="button" variant="danger" className="col-12 m-0" data-bs-dismiss="modal">Delete</Button>
                         </div>
                     </div>
                 </div>
