@@ -1,7 +1,7 @@
 import React from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import logo from "../StaticMedia/TheGuyLogo.png"
+import logo from "../StaticMedia/TheGuyLogo.png";
 
 function MainNavBar()
 {
@@ -16,6 +16,7 @@ function MainNavBar()
                 <Nav >
                     <Link className="nav-link" to="/Menu">Menu</Link>
                     <Link className="nav-link" to="/Cart">Cart</Link>
+                    <Link className="nav-link" to="/Account/Profile">Account</Link>
                     <Link className="nav-link" to="/Account/Profile">Account</Link>
                 </Nav>
                 </Navbar.Collapse>

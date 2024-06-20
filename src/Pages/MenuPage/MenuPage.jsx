@@ -11,6 +11,7 @@ function MenuPage()
     useEffect(() => {
         axios.get(import.meta.env.VITE_SERVER_API + "/MenuItem/")
             .then((res) => setMenuItems(res.data))
+            .catch((err) => console.log(err))
     }, [])
 
     return(
