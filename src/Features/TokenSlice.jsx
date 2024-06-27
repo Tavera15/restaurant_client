@@ -26,6 +26,15 @@ export const tokenSlice = createSlice({
     isLoading: false,
     hasError: false
   },
+  reducers: {
+    userLogout: (state, action) => {
+      state.value = "";
+      state.isLoading = false;
+      state.hasError = false;
+
+      document.cookie = "token=; Max-Age=0"
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(userLogin.pending, (state, action) => {
@@ -66,5 +75,7 @@ export const tokenSlice = createSlice({
 export const selectToken = state => state.token.value;
 export const selectLoadingState = state => state.token.isLoading;
 export const selectErrorState = state => state.token.hasError;
+
+export const { userLogout } = tokenSlice.actions;
 
 export default tokenSlice.reducer;

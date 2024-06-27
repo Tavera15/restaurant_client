@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { userLogin } from "../Features/TokenSlice";
 
 function LoginForm({setShowLogin})
@@ -21,7 +21,7 @@ function LoginForm({setShowLogin})
         
         dispatch(userLogin(data));
     }
-    
+
     return(
         <div className="col-md-4 p-4 border bg-dark">
             <h1>Login</h1>
