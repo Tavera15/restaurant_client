@@ -8,8 +8,6 @@ function LoginForm({setShowLogin})
 {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
-    const token = useSelector((state) => state.token.value);
     const dispatch = useDispatch();
 
     async function onLogin(e)
@@ -21,7 +19,7 @@ function LoginForm({setShowLogin})
             password: password
         }
         
-        dispatch(userLogin(data))
+        dispatch(userLogin(data));
     }
     
     return(

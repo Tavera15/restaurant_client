@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 
+const cookieExpiration = 86400;       // One day
+
 export const userSignup = createAsyncThunk(
   "user/UserRegistration",
   async (data) => {
@@ -29,11 +31,13 @@ export const tokenSlice = createSlice({
       .addCase(userLogin.pending, (state, action) => {
       state.isLoading = true;
       state.hasError = false;
-    })
+      })
       .addCase(userLogin.fulfilled, (state, action) => {
         state.value = action.payload;
         state.isLoading = false;
-        state.hasError = false
+        state.hasError = false;
+
+        document.cookie = `token=${state.value}; Max-Age=${cookieExpiration}`
       })
       .addCase(userLogin.rejected, (state, action) => {
         state.hasError = true
@@ -49,13 +53,13 @@ export const tokenSlice = createSlice({
         state.value = action.payload;
         state.isLoading = false;
         state.hasError = false
+
+        document.cookie = `token=${state.value}; Max-Age=${cookieExpiration}`
       })
       .addCase(userSignup.rejected, (state, action) => {
         state.hasError = true
         state.isLoading = false;
       })
-  },
-  reducers: {
   },
 })
 
