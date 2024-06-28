@@ -1,14 +1,18 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useDispatch } from 'react-redux';
-import { userLogin } from "../Features/TokenSlice";
+import { userLogin, refreshToken } from "../Features/TokenSlice";
 
 function LoginForm({setShowLogin})
 {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(refreshToken())
+    }, [])
 
     async function onLogin(e)
     {
