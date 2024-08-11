@@ -19,15 +19,15 @@ export const userLogin = createAsyncThunk(
   },
 );
 
-export const refreshToken = createAsyncThunk(
-  "user/RefreshToken",
+export const verifyToken = createAsyncThunk(
+  "user/VerifyToken",
   async () => {
     let token = document.cookie
     .split("; ")
     .find((row) => row.startsWith("token="))
     ?.split("=")[1];
 
-    const response = await axios.get(import.meta.env.VITE_SERVER_API + "/User/RefreshToken", {headers: {Authorization: token}});
+    const response = await axios.get(import.meta.env.VITE_SERVER_API + "/User/VerifyToken", {headers: {Authorization: token}});
     return response.data;
   }
 )
@@ -45,7 +45,7 @@ export const tokenSlice = createSlice({
       state.isLoading = false;
       state.hasError = false;
 
-      document.cookie = "token=; Max-Age=0"
+      document.cookie = "token=; Max-Age=0; path=";
     },
   },
   extraReducers: (builder) => {
@@ -59,7 +59,7 @@ export const tokenSlice = createSlice({
         state.isLoading = false;
         state.hasError = false;
 
-        document.cookie = `token=${state.value}; Max-Age=${cookieExpiration}`
+        document.cookie = `token=${state.value}; Max-Age=${cookieExpiration}; path=/`;
       })
       .addCase(userLogin.rejected, (state, action) => {
         state.hasError = true
@@ -76,7 +76,7 @@ export const tokenSlice = createSlice({
         state.isLoading = false;
         state.hasError = false
 
-        document.cookie = `token=${state.value}; Max-Age=${cookieExpiration}`
+        document.cookie = `token=${state.value}; Max-Age=${cookieExpiration}; path=/`;
       })
       .addCase(userSignup.rejected, (state, action) => {
         state.hasError = true
@@ -84,20 +84,23 @@ export const tokenSlice = createSlice({
       })
 
       builder
-      .addCase(refreshToken.pending, (state, action) => {
+      .addCase(verifyToken.pending, (state, action) => {
         state.isLoading = true;
         state.hasError = false;
       })
-      .addCase(refreshToken.fulfilled, (state, action) => {
+      .addCase(verifyToken.fulfilled, (state, action) => {
         state.value = action.payload;
         state.isLoading = false;
-        state.hasError = false
-
-        document.cookie = `token=${state.value}; Max-Age=${cookieExpiration}`
+        state.hasError = false;
+        
+        document.cookie = `token=${action.payload}; Max-Age=${cookieExpiration}; path=/`
       })
-      .addCase(refreshToken.rejected, (state, action) => {
-        state.hasError = true
+      .addCase(verifyToken.rejected, (state, action) => {
+        state.value= "";
         state.isLoading = false;
+        state.hasError = true;
+
+        document.cookie = "token=; Max-Age=0; path=/";
       })
   },
 })

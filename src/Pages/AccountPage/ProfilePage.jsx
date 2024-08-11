@@ -3,6 +3,7 @@ import { Button, Form } from "react-bootstrap";
 import MainNavBar from "../../Components/MainNavBar";
 import AccountNav from "../../Components/AccountNav";
 import axios from "axios";
+import store from "../../store";
 
 function ProfilePage()
 {
@@ -14,8 +15,10 @@ function ProfilePage()
     const [city, setCity]                   = useState("");
     const [state, setState]                 = useState("");
     const [zipCode, setZipCode]             = useState("");
+
+    const token = store.getState().token.value;
     
-    function UpdateProfile(e)
+    async function UpdateProfile(e)
     {
         e.preventDefault();
 
@@ -30,6 +33,8 @@ function ProfilePage()
             zip: zipCode
         }
 
+        const res = await axios.put(import.meta.env.VITE_SERVER_API + "/User/UpdateUser", newData, {headers: {Authorization: token}})
+        console.log(res)
     }
 
     return(
@@ -50,7 +55,7 @@ function ProfilePage()
                             </div>
                             <div className="form-group col-md-4 mt-3">
                                 <label htmlFor="inputPhone">Telephone</label>
-                                <input value={phone} onChange={(e) => setPhone(e.target.value)} type="email" className="form-control" id="inputPhone" placeholder="123-456-7890" />
+                                <input value={phone} onChange={(e) => setPhone(e.target.value)} type="telephone" className="form-control" id="inputPhone" placeholder="123-456-7890" />
                             </div>
                         </div>
                         <div className="form-group mt-3 mt-3">

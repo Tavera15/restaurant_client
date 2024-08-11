@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import './App.css'
 import HomePage from './Pages/HomePage/HomePage'
@@ -9,8 +10,17 @@ import CartPage from "./Pages/CartPage/CartPage";
 import SignInPage from "./Pages/SignInPage/SignInPage";
 import ProfilePage from "./Pages/AccountPage/ProfilePage";
 import OrdersPage from "./Pages/OrdersPage/OrdersPage";
+import PrivateRoute from "./Pages/AccountPage/PrivateRoute";
+import { useDispatch } from 'react-redux';
+import { verifyToken } from "./Features/TokenSlice";
 
 function App() {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+       dispatch(verifyToken());
+  }, []);
 
   return (
     <div className='bg-dark'>
@@ -25,11 +35,25 @@ function App() {
 
           <Route exact path="/Login" element={<SignInPage />} />
 
+          <Route 
+            exact path="/Account/Profile"
+            element={
+              <PrivateRoute>
+                <ProfilePage />
+              </PrivateRoute>
+            }
+          />
+
+          <Route 
+            exact path="/Account/Orders"
+            element={
+              <PrivateRoute>
+                <OrdersPage />
+              </PrivateRoute>
+            }
+          />
+
           <Route exact path='/Manager/Menu' element={<MenuManager />}></Route>
-
-          <Route exact path="/Account/Profile" element={<ProfilePage />} />
-
-          <Route exact path="/Account/Orders" element={<OrdersPage />} />
 
           <Route exact path="/Admin/Menu" element={<MenuManager />} />
 
@@ -42,4 +66,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
