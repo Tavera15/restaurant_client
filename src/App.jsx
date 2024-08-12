@@ -11,16 +11,8 @@ import SignInPage from "./Pages/SignInPage/SignInPage";
 import ProfilePage from "./Pages/AccountPage/ProfilePage";
 import OrdersPage from "./Pages/OrdersPage/OrdersPage";
 import PrivateRoute from "./Pages/AccountPage/PrivateRoute";
-import { useDispatch } from 'react-redux';
-import { verifyToken } from "./Features/TokenSlice";
 
 function App() {
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-       dispatch(verifyToken());
-  }, []);
 
   return (
     <div className='bg-dark'>
@@ -53,7 +45,6 @@ function App() {
             }
           />
 
-          <Route exact path='/Manager/Menu' element={<MenuManager />}></Route>
 
           <Route exact path="/Admin/Menu" element={<MenuManager />} />
 

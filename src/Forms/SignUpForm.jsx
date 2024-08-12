@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { userSignup } from "../Features/TokenSlice";
+import { useNavigate } from "react-router-dom";
 
 function SignUpForm({setShowLogin})
 {
@@ -10,8 +11,8 @@ function SignUpForm({setShowLogin})
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
 
-    const token = useSelector((state) => state.token.value);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     
     async function onSignup(e)
     {
@@ -25,8 +26,8 @@ function SignUpForm({setShowLogin})
                 password: confirmPassword
             }
 
-            dispatch(userSignup(data));
-            console.log(token)
+            await dispatch(userSignup(data));
+            navigate("/Account/Profile");
         }
     }
 

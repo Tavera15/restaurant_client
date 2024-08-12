@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useDispatch } from 'react-redux';
 import { userLogin } from "../Features/TokenSlice";
+import { useNavigate } from "react-router-dom";
 
 function LoginForm({setShowLogin})
 {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     async function onLogin(e)
     {
@@ -18,7 +21,8 @@ function LoginForm({setShowLogin})
             password: password
         }
         
-        dispatch(userLogin(data));
+        await dispatch(userLogin(data));
+        navigate("/Account/Profile");
     }
 
     return(
