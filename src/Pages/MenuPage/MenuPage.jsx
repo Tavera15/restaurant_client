@@ -7,12 +7,15 @@ import axios from "axios";
 function MenuPage()
 {
     const [menuItems, setMenuItems] = useState([]);
+    const [isLoaded, setLoading] = useState(false);
 
     useEffect(() => {
         axios.get(import.meta.env.VITE_SERVER_API + "/MenuItem/")
             .then((res) => setMenuItems(res.data))
-            .catch((err) => console.log(err))
-    }, [])
+            .then(() => setLoading(true));
+
+        console.log(menuItems)
+    }, [isLoaded])
 
     return(
         <div className="container-fluid flex-row-wrap center-items">
@@ -27,7 +30,14 @@ function MenuPage()
                     <div className="flex-row-wrap center-items food-items" >
                         {
                             menuItems.map((m, i) => {
-                                return <MenuItem key={i}/>
+                                return <MenuItem 
+                                            name={m.name} 
+                                            price={m.price} 
+                                            desc={m.description}
+                                            customs={m.customs}
+                                            id={m._id}
+                                            key={m._id}
+                                        />
                             })
                         }
                     </div>

@@ -54,7 +54,6 @@ function ProfilePage()
         }
 
         const res = await axios.put(import.meta.env.VITE_SERVER_API + "/User/UpdateUser", newData, {headers: {Authorization: token}})
-        console.log(res)
     }
 
     return(
