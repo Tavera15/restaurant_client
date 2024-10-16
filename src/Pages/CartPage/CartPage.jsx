@@ -13,7 +13,7 @@ function CartPage()
                 <div>
 
                 <div className="container py-4 flex-row-wrap">
-                    <div className="col-12 col-md-8">
+                    <div className="col-12 col-md-6">
                         <div className="title">
                             <div className="">
                                 <div className="col"><h4><b>Shopping Cart</b></h4></div>
@@ -25,7 +25,7 @@ function CartPage()
                         <CartItem />
                         
                     </div>
-                    <div className="col-12 col-md-4 mt-4 mt-md-0 summary">
+                    <div className="col-12 col-md-6 mt-4 mt-md-0 summary">
                         <h4>Summary</h4>
                         <div className="flex-row-wrap border-top">
                             <div className="col">ITEMS 3</div>
