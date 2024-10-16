@@ -38,13 +38,14 @@ function MenuItem({name, price, desc, customs, id})
                                     <Card.Img variant="top" src="holder.js/100px180" />
 
                                     <div>
-                                        <div className=" d-flex justify-content-scenter align-items-center flex-column">
-                                            <div className="p-3 d-flex flex-column justify-content-start align-items-start">
+                                        <div>
+                                            <div className="p-0 col-12">
                                                 {
                                                     Object.keys(customObj).map((k,i) =>{
                                                         return (
-                                                                    <div key={i}>
+                                                                    <div className="mb-4 mt-4" key={i}>
                                                                         <h4>{k}</h4>
+                                                                        <div className="d-flex justify-content-center">
                                                                         {
                                                                             customObj[k].split(",").map((o, index) => {
                                                                                 return <Form.Check
@@ -54,16 +55,18 @@ function MenuItem({name, price, desc, customs, id})
                                                                                             name={k}
                                                                                             value={o}
                                                                                             key={index}
+                                                                                            className="m-2"
                                                                                         />
                                                                             })
                                                                         }
+                                                                        </div>
+                                                                        <hr />
                                                                     </div>
                                                                 )
                                                     })
                                                 }
                                             </div>
                                         </div>
-                                        <hr />
                                     </div>
                                 </div>
                                 <div className="modal-footer">
