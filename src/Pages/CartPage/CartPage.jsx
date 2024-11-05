@@ -8,7 +8,6 @@ import { selectCartId, clearCart, getCartItems } from "../../Features/CartSlice"
 
 function CartPage()
 {
-    const [cartItems, setCartItems] = useState([]);
     const dispatch = useDispatch();
     const cartId = useSelector(state => state.cart.cart);
     const items = useSelector(state => state.cart.items);
@@ -21,6 +20,7 @@ function CartPage()
     {
         e.preventDefault();
         await dispatch(clearCart({}));
+        await dispatch(getCartItems());
     }
 
     return(
@@ -36,9 +36,6 @@ function CartPage()
                                 <div className="col"><h4><b>Shopping Cart</b></h4></div>
                             </div>
                         </div>    
-                        
-                        <h1>hello {cartId}</h1>
-
                         {
                             items.map((item, i) => {
                                 return(

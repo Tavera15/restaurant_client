@@ -114,13 +114,11 @@ export const cartSlice = createSlice({
         state.hasError = false;
       })
       .addCase(addToCart.fulfilled, (state, action) => {
-        console.log("1: " + state.cart)
         state.cart = action.payload._id;
         state.isLoading = false;
         state.hasError = false;
         
         document.cookie = `cart=${state.cart}; Max-Age=${cookieExpiration}; path=/`;
-        console.log("2: " + state.cart)
       })
       .addCase(addToCart.rejected, (state, action) => {
         state.cart = "";

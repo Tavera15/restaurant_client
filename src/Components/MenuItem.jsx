@@ -7,10 +7,12 @@ import { addToCart } from "../Features/CartSlice";
 function MenuItem({name, price, desc, customs, id})
 {
     const [customObj, setCustomObj] = useState({});
+    const [customSelects, setCustomSelects] = useState([]);
     const dispatch = useDispatch();
     
     useEffect(() => {
         setCustomObj(JSON.parse(customs));
+        Object.keys(customObj).map((k, i) => customSelects[k] = "");
     }, [])
 
     async function AddToCart(e)
@@ -19,7 +21,7 @@ function MenuItem({name, price, desc, customs, id})
         const data ={
             itemId: id,
             qty: 1,
-            customs: customObj
+            customs: customSelects
         }
 
         await dispatch(addToCart(data));
@@ -71,6 +73,7 @@ function MenuItem({name, price, desc, customs, id})
                                                                                             value={o}
                                                                                             key={index}
                                                                                             className="m-2"
+                                                                                            onClick={(e) => setCustomSelects(prev => ({...prev, [k]: o}))}
                                                                                         />
                                                                             })
                                                                         }

@@ -1,12 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Form, Card } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { editCartItem } from "../Features/CartSlice";
+import axios from "axios";
 
 function CartItem({id, name, customObj})
 {
     const [qty, setQty] = useState(1);
     const dispatch = useDispatch();
+    const [cartItem, setCartItem] = useState({});
+    const [menuItem, setMenuItem] = useState({});
+    const cartId = useSelector(state => state.cart.cart);
+
+
+    useEffect(() => {
+      axios.get(import.meta.env.VITE_SERVER_API + "/Cart/GetSingleCartItem/", {params: {cartItemId: id, cartid: cartId}})
+      .then((res) => {
+        setMenuItem(res.data.menuItem);
+        setCartItem(res.data.target);
+      })
+
+    }, [])
 
     function counter(e, amount)
     {
@@ -18,10 +32,6 @@ function CartItem({id, name, customObj})
     {
         e.preventDefault();
         
-        const data = {
-
-        }
-        
         await dispatch(editCartItem());
     }
 
@@ -29,7 +39,7 @@ function CartItem({id, name, customObj})
         <div className="rounded border mb-4">
             <div className="card bg-dark">
           <div className="card-header py-3">
-            <h5 className="mb-0 text-truncate">{id}</h5>
+            <h5 className="mb-0 text-truncate"><strong>{menuItem.name}</strong></h5>
           </div>
           <div className="card-body">
             <div className="row">
@@ -44,9 +54,16 @@ function CartItem({id, name, customObj})
               </div>
 
               <div className="col-lg-5 col-md-6 mb-4 mb-lg-0">
-                <p><strong>Blue denim shirt</strong></p>
-                <p>Color: blue</p>
-                <p>Size: M</p>
+
+                {
+                    cartItem !== undefined && cartItem.customs 
+                    ? Object.keys(JSON.parse(cartItem.customs)).map((k, i) => {
+                      return(
+                        <p key={i}>{k}: {JSON.parse(cartItem.customs)[k]}</p>
+                      );
+                    })
+                    : null
+                }
 
                 <div className="d-flex justify-content-center">
 
@@ -129,10 +146,10 @@ function CartItem({id, name, customObj})
               <div className="col-lg-4 col-md-6 mb-4 mb-lg-0">
               
                 <p className="text-start text-md-center">
-                  <strong>Qty: 2</strong>
+                  <strong>Qty: {cartItem.quantity}</strong>
                 </p>
                 <p className="text-start text-md-center">
-                  <strong>$17.99</strong>
+                  <strong>${menuItem.price ? menuItem.price.toFixed(2) : 0.00}</strong>
                 </p>
               </div>
               </div>

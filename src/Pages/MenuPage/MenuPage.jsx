@@ -13,8 +13,6 @@ function MenuPage()
         axios.get(import.meta.env.VITE_SERVER_API + "/MenuItem/")
             .then((res) => setMenuItems(res.data))
             .then(() => setLoading(true));
-
-        console.log(menuItems)
     }, [isLoaded])
 
     return(
