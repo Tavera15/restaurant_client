@@ -1,38 +1,57 @@
 import React, { useEffect, useState } from "react";
 import { Button, Form, Card } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { editCartItem } from "../Features/CartSlice";
+import { editCartItem, getCartItems } from "../Features/CartSlice";
 import axios from "axios";
 
-function CartItem({id, name, customObj})
+function CartItem({id})
 {
     const [qty, setQty] = useState(1);
-    const dispatch = useDispatch();
     const [cartItem, setCartItem] = useState({});
     const [menuItem, setMenuItem] = useState({});
+    
+    const dispatch = useDispatch();
     const cartId = useSelector(state => state.cart.cart);
-
+    
+    const [customObj, setCustomObj] = useState({});
+    const [customSelects, setCustomSelects] = useState({});
 
     useEffect(() => {
-      axios.get(import.meta.env.VITE_SERVER_API + "/Cart/GetSingleCartItem/", {params: {cartItemId: id, cartid: cartId}})
-      .then((res) => {
+      setCartItemCard();
+    }, []);
+
+    function setCartItemCard()
+    {
+        axios.get(import.meta.env.VITE_SERVER_API + "/Cart/GetSingleCartItem/", {params: {cartItemId: id, cartid: cartId}})
+        .then((res) => {
         setMenuItem(res.data.menuItem);
         setCartItem(res.data.target);
+        setQty(res.data.target.quantity);
+
+        setCustomObj(JSON.parse(res.data.menuItem.customs));
+        setCustomSelects(JSON.parse(res.data.target.customs));
       })
-
-    }, [])
-
-    function counter(e, amount)
-    {
-        e.preventDefault();
-        setQty(qty + amount <= 1 ? 1 : qty + amount);
     }
 
     async function UpdateItem(e)
     {
         e.preventDefault();
+
+        const data = {
+          targetId: id,
+          qty: qty,
+          customs: customSelects
+        }
         
-        await dispatch(editCartItem());
+        await dispatch(editCartItem(data));
+        setCartItemCard();
+    }
+
+    function counter(e, amount)
+    {
+        e.preventDefault();
+
+        setQty(qty + amount <= 1 ? 1 : qty + amount);
     }
 
     return(
@@ -69,18 +88,18 @@ function CartItem({id, name, customObj})
 
                   <Form className="d-block" onSubmit={(e) => UpdateItem(e)}>
 
-                        <Button  type="button" data-bs-toggle="modal" data-bs-target={"#exampleModalCenter" } data-mdb-button-init data-mdb-ripple-init className="btn btn-primary btn-sm me-1 mb-2" data-mdb-tooltip-init
+                        <Button  type="button" data-bs-toggle="modal" data-bs-target={"#exampleModalCenter" + id } data-mdb-button-init data-mdb-ripple-init className="btn btn-primary btn-sm me-1 mb-2" data-mdb-tooltip-init
                           title="Edit item">
                           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-pencil" viewBox="0 0 16 16">
                             <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
                           </svg>
                         </Button>
 
-                        <div className="modal fade" id={"exampleModalCenter" } tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div className="modal fade" id={"exampleModalCenter" + id } tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div className="modal-dialog modal-dialog-centered" role="document">
                                 <div className="modal-content bg-dark">
                                 <div className="modal-header">
-                                    <h5 className="modal-title" id="exampleModalCenterTitle">{name}</h5>
+                                    <h5 className="modal-title" id="exampleModalCenterTitle">{menuItem.name}</h5>
                                     <button type="button" className="close" data-bs-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                     </button>
@@ -88,9 +107,29 @@ function CartItem({id, name, customObj})
                                 <div className="modal-body">
                                     <Card.Img variant="top" src="holder.js/100px180" />
 
+                                    <div className="mt-4 d-flex justify-content-center col-12 align-items-center col">
+
+                                      <Button type="image" className="bg-transparent" style={{"border": "none"}} onClick={(e) => counter(e, -1)}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white" className="bi bi-dash-circle-fill" viewBox="0 0 16 16">
+                                          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1z"/>
+                                        </svg>
+                                      </Button>
+                                      
+                                      <h4 className="m-0 ms-4 me-4 ">{qty}</h4>
+
+                                      <Button type="image" className="bg-transparent" style={{"border": "none"}} onClick={(e) => counter(e, 1)}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white" className="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                                          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
+                                        </svg>
+                                      </Button>
+
+                                    </div>
+
+                                    <hr />
+
                                     <div>
                                         <div>
-                                        {/* <div className="p-0 col-12">
+                                          <div className="p-0 col-12">
                                                 {
                                                     Object.keys(customObj).map((k,i) =>{
                                                         return (
@@ -101,12 +140,14 @@ function CartItem({id, name, customObj})
                                                                             customObj[k].split(",").map((o, index) => {
                                                                                 return <Form.Check
                                                                                             type="radio"
-                                                                                            id="o"
+                                                                                            id={"o" + id}
                                                                                             label={o}
                                                                                             name={k}
                                                                                             value={o}
                                                                                             key={index}
                                                                                             className="m-2"
+                                                                                            checked={customSelects[k] === o}
+                                                                                            onChange={(e) => setCustomSelects(prev => ({...prev, [k]: o}))}
                                                                                         />
                                                                             })
                                                                         }
@@ -116,8 +157,7 @@ function CartItem({id, name, customObj})
                                                                 )
                                                     })
                                                 }
-                                            </div>
-                                            */}
+                                          </div>
                                         </div> 
                                     </div>
                                 </div>
@@ -129,9 +169,6 @@ function CartItem({id, name, customObj})
                             </div>
                         </div>
                   </Form>
-                  
-
-
 
                   <Button type="button" data-mdb-button-init data-mdb-ripple-init className="btn btn-danger btn-sm mb-2" data-mdb-tooltip-init
                     title="Remove item">

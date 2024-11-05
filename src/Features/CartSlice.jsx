@@ -6,7 +6,7 @@ const cartHeader = "cartid"
 
 export const getCartItems = createAsyncThunk(
   "cart/GetCartItems",
-  async (data) => {
+  async () => {
     let cartCookie = document.cookie
     .split("; ")
     .find((row) => row.startsWith("cart="))

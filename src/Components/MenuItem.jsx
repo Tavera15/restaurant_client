@@ -6,8 +6,9 @@ import { addToCart } from "../Features/CartSlice";
 
 function MenuItem({name, price, desc, customs, id})
 {
+    const [qty, setQty] = useState(1);
     const [customObj, setCustomObj] = useState({});
-    const [customSelects, setCustomSelects] = useState([]);
+    const [customSelects, setCustomSelects] = useState({});
     const dispatch = useDispatch();
     
     useEffect(() => {
@@ -20,11 +21,18 @@ function MenuItem({name, price, desc, customs, id})
         e.preventDefault();
         const data ={
             itemId: id,
-            qty: 1,
+            qty: qty,
             customs: customSelects
         }
 
         await dispatch(addToCart(data));
+    }
+
+    function counter(e, amount)
+    {
+        e.preventDefault();
+
+        setQty(qty + amount <= 1 ? 1 : qty + amount);
     }
 
     return(
@@ -53,6 +61,24 @@ function MenuItem({name, price, desc, customs, id})
                                 </div>
                                 <div className="modal-body">
                                     <Card.Img variant="top" src="holder.js/100px180" />
+
+                                    <div className="mt-4 d-flex justify-content-center col-12 align-items-center col">
+
+                                      <Button type="image" className="bg-transparent" style={{"border": "none"}} onClick={(e) => counter(e, -1)}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white" className="bi bi-dash-circle-fill" viewBox="0 0 16 16">
+                                          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1z"/>
+                                        </svg>
+                                      </Button>
+                                      
+                                      <h4 className="m-0 ms-4 me-4 ">{qty}</h4>
+
+                                      <Button type="image" className="bg-transparent" style={{"border": "none"}} onClick={(e) => counter(e, 1)}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white" className="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                                          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
+                                        </svg>
+                                      </Button>
+
+                                    </div>
 
                                     <div>
                                         <div>
