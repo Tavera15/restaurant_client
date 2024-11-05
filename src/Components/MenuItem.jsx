@@ -1,16 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { Card, Button, Form } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../Features/CartSlice";
+
 
 function MenuItem({name, price, desc, customs, id})
 {
     const [customObj, setCustomObj] = useState({});
+    const dispatch = useDispatch();
     
     useEffect(() => {
         setCustomObj(JSON.parse(customs));
     }, [])
 
-    return(
+    async function AddToCart(e)
+    {
+        e.preventDefault();
+        const data ={
+            itemId: id,
+            qty: 1,
+            customs: customObj
+        }
 
+        await dispatch(addToCart(data));
+    }
+
+    return(
         <div className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 p-2">
             <Card>
                 <Card.Img variant="top" src="holder.js/100px180" />
@@ -22,7 +37,7 @@ function MenuItem({name, price, desc, customs, id})
                     <Card.Text>
                         ${price}
                     </Card.Text>
-                    <Form className="form-group col-12">
+                    <Form className="form-group col-12" onSubmit={(e) => AddToCart(e)}>
                         <Button className="col-12" variant="outline-light" data-bs-toggle="modal" data-bs-target={"#exampleModalCenter" + id}>Add to cart</Button>
 
                         <div className="modal fade" id={"exampleModalCenter" + id} tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -71,7 +86,7 @@ function MenuItem({name, price, desc, customs, id})
                                 </div>
                                 <div className="modal-footer">
                                     <Button variant="secondary" data-bs-dismiss="modal">Close</Button>
-                                    <Button variant="primary" data-bs-dismiss="modal">Add To Cart</Button>
+                                    <Button variant="primary" type="submit" data-bs-dismiss="modal">Add To Cart</Button>
                                 </div>
                                 </div>
                             </div>

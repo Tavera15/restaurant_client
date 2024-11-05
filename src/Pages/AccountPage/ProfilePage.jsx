@@ -61,7 +61,7 @@ function ProfilePage()
             <div className="row align-items-start">
                 <AccountNav />
                 <div className="container col-md-6">
-                    <h1>Profile</h1>
+                    <h1>Profile {token}</h1>
                     <Form onSubmit={(e) => UpdateProfile(e)}>
                         <div className="form-row row">
                             <div className="form-group col-md-4 mt-3">

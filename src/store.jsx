@@ -1,9 +1,13 @@
-import { applyMiddleware, configureStore } from '@reduxjs/toolkit'
+import { applyMiddleware, combineReducers, configureStore } from '@reduxjs/toolkit'
 import tokenReducer from './Features/TokenSlice'
+import cartReducer from './Features/CartSlice'
 import { thunk } from 'redux-thunk'
+
+const rootReducer = combineReducers({token: tokenReducer, cart: cartReducer});
 
 export default configureStore({
   reducer: {
-    token: tokenReducer
+    cart: cartReducer,
+    token: tokenReducer,
   },
 }, applyMiddleware(thunk));
