@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Form, Card } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { editCartItem, getCartItems } from "../Features/CartSlice";
+import { editCartItem, getCartItems, removeFromCart } from "../Features/CartSlice";
 import axios from "axios";
 
 function CartItem({id})
@@ -45,6 +45,18 @@ function CartItem({id})
         
         await dispatch(editCartItem(data));
         setCartItemCard();
+    }
+
+    async function DeleteItem(e)
+    {
+        e.preventDefault();
+        
+        const data = {
+          targetId: id
+        }
+        
+        await dispatch(removeFromCart(data));
+        window.location.reload()
     }
 
     function counter(e, amount)
@@ -162,7 +174,7 @@ function CartItem({id})
                                     </div>
                                 </div>
                                 <div className="modal-footer">
-                                    <Button variant="secondary" data-bs-dismiss="modal">Close</Button>
+                                    <Button type="button" variant="secondary" data-bs-dismiss="modal">Close</Button>
                                     <Button type="submit" variant="primary" data-bs-dismiss="modal">Update</Button>
                                 </div>
                                 </div>
@@ -170,7 +182,7 @@ function CartItem({id})
                         </div>
                   </Form>
 
-                  <Button type="button" data-mdb-button-init data-mdb-ripple-init className="btn btn-danger btn-sm mb-2" data-mdb-tooltip-init
+                  <Button onClick={(e) => DeleteItem(e)} type="button" data-mdb-button-init data-mdb-ripple-init className="btn btn-danger btn-sm mb-2" data-mdb-tooltip-init
                     title="Remove item">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-trash" viewBox="0 0 16 16">
                       <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
