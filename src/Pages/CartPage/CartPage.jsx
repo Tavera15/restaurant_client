@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 import CartItem from "../../Components/CartItem";
 import MainNavBar from "../../Components/MainNavBar";
 import { Button } from "react-bootstrap";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { selectCartId, clearCart, getCartItems } from "../../Features/CartSlice";
+import { clearCart, getCartItems } from "../../Features/CartSlice";
 
 function CartPage()
 {

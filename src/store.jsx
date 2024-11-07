@@ -3,8 +3,6 @@ import tokenReducer from './Features/TokenSlice'
 import cartReducer from './Features/CartSlice'
 import { thunk } from 'redux-thunk'
 
-const rootReducer = combineReducers({token: tokenReducer, cart: cartReducer});
-
 export default configureStore({
   reducer: {
     cart: cartReducer,
