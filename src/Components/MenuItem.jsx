@@ -13,7 +13,7 @@ function MenuItem({name, price, desc, customs, id})
     
     useEffect(() => {
         setCustomObj(JSON.parse(customs));
-        Object.keys(customObj).map((k, i) => customSelects[k] = "");
+        Object.keys(JSON.parse(customs)).map((k, i) => setCustomSelects(prev => ({...prev, [k]: JSON.parse(customs)[k].split(",")[Math.floor(JSON.parse(customs)[k].split(",").length / 2)]})));
     }, [])
 
     async function AddToCart(e)
@@ -42,6 +42,7 @@ function MenuItem({name, price, desc, customs, id})
                 <Card.Body className="bg-dark">
                     <Card.Title>{name}</Card.Title>
                     <Card.Text>
+                        {JSON.stringify(customSelects)}
                     {desc}
                     </Card.Text>
                     <Card.Text>
@@ -92,6 +93,7 @@ function MenuItem({name, price, desc, customs, id})
                                                                         {
                                                                             customObj[k].split(",").map((o, index) => {
                                                                                 return <Form.Check
+                                                                                            required = {true}
                                                                                             type="radio"
                                                                                             id="o"
                                                                                             label={o}
@@ -99,8 +101,8 @@ function MenuItem({name, price, desc, customs, id})
                                                                                             value={o}
                                                                                             key={index}
                                                                                             className="m-2"
-                                                                                            checked={(Math.floor(customObj[k].split(",").length / 2) === index)}
-                                                                                            onClick={(e) => setCustomSelects(prev => ({...prev, [k]: o}))}
+                                                                                            defaultChecked={(Math.floor(customObj[k].split(",").length / 2) === index)}
+                                                                                            onChange={(e) => setCustomSelects(prev => ({...prev, [k]: o}))}
                                                                                         />
                                                                             })
                                                                         }
@@ -118,7 +120,7 @@ function MenuItem({name, price, desc, customs, id})
                                     <Button variant="secondary" data-bs-dismiss="modal">Close</Button>
                                     <Button variant="primary" type="submit" data-bs-dismiss="modal">Add To Cart</Button>
                                 </div>
-                                </div>
+                            </div>
                             </div>
                         </div>
                     </Form>
