@@ -42,7 +42,6 @@ function MenuItem({name, price, desc, customs, id})
                 <Card.Body className="bg-dark">
                     <Card.Title>{name}</Card.Title>
                     <Card.Text>
-                        {JSON.stringify(customSelects)}
                     {desc}
                     </Card.Text>
                     <Card.Text>

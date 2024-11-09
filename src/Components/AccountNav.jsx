@@ -36,6 +36,10 @@ function AccountNav()
                             <Link to="/Account/Orders" className="col-12 nav-link mb-2">
                                 <p className="fs-4">Orders</p>
                             </Link>
+
+                            <Link to="/Admin/Menu" className="col-12 nav-link mb-2">
+                                <p className="fs-4">Menu mMnager</p>
+                            </Link>
     
                         </div>
                     </Navbar>
