@@ -1,16 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { Card, Form, Button } from "react-bootstrap";
 
-function MenuItemForm({btnText, num})
+function MenuItemForm({item, btnText, num, btnAction})
 {
+    const [itemName, setItemName] = useState("");
+    const [itemPrice, setItemPrice] = useState(1.00);
+    const [itemDesc, setItemDesc] = useState("");
     const [currentListOptions, setCurrentListOptions] = useState([]);
     const [listName, setListName] = useState("");
     const [listOpt, setListOpt] = useState("");
+    const [img, setImg] = useState("");
     const [customs, setCustoms] = useState({});
     const [displayCustoms, setDisplayCustoms] = useState(false);
     const [displayEditList, setDisplayEditList] = useState(false);
 
     const [updateListKey, setUpdateListKey] = useState("");
+
+    useEffect(() => {
+        if(!item) {return;}
+
+        setItemName(item.name);
+        setItemDesc(item.description);
+        setItemPrice(item.price);
+        setImg(item.image);
+        setCustoms(JSON.parse(item.customs));
+    },[item])
 
     function addOptToList(e)
     {
@@ -45,7 +59,6 @@ function MenuItemForm({btnText, num})
     {
         setDisplayEditList(true);
         setDisplayCustoms(true);
-        console.log(customs)
         setUpdateListKey(key);
         setListName(key)
         setCurrentListOptions(customs[key].split(','));
@@ -110,21 +123,69 @@ function MenuItemForm({btnText, num})
         setCurrentListOptions(res);
     }
 
+    /*
+    function handleImgUpload(e)
+    {
+        const newImg = e.target.files[0];
+
+        if(newImg !== undefined)
+        {
+            const reader = new FileReader();
+            reader.readAsDataURL(newImg);
+            
+            reader.onload = function () {
+                // Convert img to bytes
+                const imgBytesRaw = JSON.stringify(reader.result)
+                const imgBytes = imgBytesRaw.substring(1, imgBytesRaw.length-1)
+                setImg(imgBytes);
+            }
+        }
+    }
+    */
+
+    function handleSubmit(e)
+    {
+        e.preventDefault();
+
+        const data = {
+            "name": itemName,
+            "description": itemDesc, 
+            "price": itemPrice, 
+            "categoryId": "66300cc024d6df44c8c0e697", 
+            "image": img,
+            "customs": customs
+        }
+
+        btnAction(e, data);
+    }
+
     return(
         <div className="modal fade" id={`menuItemFormModal${num}`} tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div className="modal-dialog modal-dialog-centered" role="document">
                 <div className="modal-content bg-dark">
                     <div className="modal-header">
-                        <input placeholder="Menu Item Name" />
+                        <input placeholder="Menu Item Name" value={itemName} onChange={(e) => setItemName(e.target.value)} />
                         <button type="button" className="close" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div className="modal-body">
-                        <Card.Img variant="top" src="holder.js/100px180" />
+                        <Card.Img variant="top" style={{ "objectFit": "contain", "aspectRatio": "1/1", "width": "100%"}} src={img} alt={itemName} />
 
-                        <input className="mt-4 form-control" placeholder="Details" />
-                        <input className="mt-4 form-control" placeholder="Price" />
+                        <div className="mt-2">
+                        <   label htmlFor={"form-desc" + num} className="form-label">Description</label>
+                            <input id={"form-desc" + num} className="form-control" placeholder="Details" value={itemDesc} onChange={(e) => setItemDesc(e.target.value)}/>
+                        </div>
+                        
+                        <div className="mt-2">
+                            <label htmlFor={"form-price" + num} className="form-label">Price</label>
+                            <input id={"form-price" + num} type="number" min="1" className="form-control" placeholder="Price" value={itemPrice} onChange={(e) => setItemPrice(e.target.value)} />
+                        </div>
+
+                        <div className="mt-2">
+                            <label htmlFor={"form-image" + num} className="form-label">Image URL</label>
+                            <input id={"form-image" + num} value={img} onChange={(e) => setImg(e.target.value)} className="form-control" placeholder="Image" />
+                        </div>
 
                         {
                             Object.keys(customs).length > 0
@@ -216,7 +277,7 @@ function MenuItemForm({btnText, num})
                         (!displayEditList && !displayCustoms)
                         ?   <div className="modal-footer d-flex justify-content-evenly">
                                 <Button variant="secondary" data-bs-dismiss="modal">Close</Button>
-                                <Button variant="primary" data-bs-dismiss="modal">{btnText}</Button>
+                                <Button onClick={(e) => handleSubmit(e)} variant="primary" data-bs-dismiss="modal">{btnText}</Button>
                             </div>
                         : ""
                     }

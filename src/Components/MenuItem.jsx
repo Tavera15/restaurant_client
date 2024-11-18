@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../Features/CartSlice";
 
 
-function MenuItem({name, price, desc, customs, id})
+function MenuItem({name, price, desc, customs, id, img})
 {
     const [qty, setQty] = useState(1);
     const [customObj, setCustomObj] = useState({});
@@ -38,7 +38,7 @@ function MenuItem({name, price, desc, customs, id})
     return(
         <div className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 p-2">
             <Card>
-                <Card.Img variant="top" src="holder.js/100px180" />
+                <Card.Img variant="top" style={{ "objectFit": "contain", "aspectRatio": "1/1", "width": "100%"}} src={img ? img : "holder.js/100px180"} alt={id} />
                 <Card.Body className="bg-dark">
                     <Card.Title>{name}</Card.Title>
                     <Card.Text>
@@ -60,7 +60,7 @@ function MenuItem({name, price, desc, customs, id})
                                     </button>
                                 </div>
                                 <div className="modal-body">
-                                    <Card.Img variant="top" src="holder.js/100px180" />
+                                    <Card.Img variant="top" style={{ "objectFit": "contain", "aspectRatio": "1/1", "width": "100%"}} src={img ? img : "holder.js/100px180"} alt={id} />
 
                                     <div className="mt-4 d-flex justify-content-center col-12 align-items-center col">
 

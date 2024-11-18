@@ -45,8 +45,14 @@ function App() {
             }
           />
 
-
-          <Route exact path="/Admin/Menu" element={<MenuManager />} />
+          <Route 
+            exact path="/Admin/Menu"
+            element={
+              <PrivateRoute>
+                <MenuManager />
+              </PrivateRoute>
+            }
+          />
 
           <Route exact path='/Admin/Category' element={<CategoryManager />}></Route>
 

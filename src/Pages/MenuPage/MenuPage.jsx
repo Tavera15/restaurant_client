@@ -34,6 +34,7 @@ function MenuPage()
                                             desc={m.description}
                                             customs={m.customs}
                                             id={m._id}
+                                            img={m.image}
                                             key={m._id}
                                         />
                             })
