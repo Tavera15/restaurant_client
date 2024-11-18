@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { editCartItem, removeFromCart } from "../Features/CartSlice";
 import axios from "axios";
 
-function CartItem({id})
+function CartItem({id, reloadFunction})
 {
     const [qty, setQty] = useState(1);
     const [cartItem, setCartItem] = useState({});
@@ -56,7 +56,7 @@ function CartItem({id})
         }
         
         await dispatch(removeFromCart(data));
-        window.location.reload();
+        reloadFunction();
     }
 
     function counter(e, amount)

@@ -10,16 +10,24 @@ function CartPage()
     const dispatch = useDispatch();
     const cartId = useSelector(state => state.cart.cart);
     const items = useSelector(state => state.cart.items);
+    const [isUpdated, setIsUpdated] = useState(false);
 
     useEffect(() => {
-        dispatch(getCartItems());
-    }, [])
+
+        if(!isUpdated)
+        {
+            console.log("here")
+            dispatch(getCartItems());
+            setIsUpdated(true);
+        } 
+        
+    }, [isUpdated])
 
     async function ClearCart(e)
     {
         e.preventDefault();
         await dispatch(clearCart({}));
-        await dispatch(getCartItems());
+        setIsUpdated(false);
     }
 
     return(
@@ -34,13 +42,14 @@ function CartPage()
                             <div className="">
                                 <div className="col"><h4><b>Shopping Cart</b></h4></div>
                             </div>
-                        </div>    
+                        </div>
                         {
                             items.map((item, i) => {
                                 return(
                                     <CartItem
                                         id={item}
-                                        key={i}
+                                        key={item}
+                                        reloadFunction={() => setIsUpdated(false)}
                                     />
                                 )
                             })
