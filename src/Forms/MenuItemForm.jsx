@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Card, Form, Button } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
+import axios from "axios";
+import { useSelector } from "react-redux";
 
 function MenuItemForm({item, btnText, num, btnAction})
 {
+    const token = useSelector(state => state.token.value);
+
     const [itemName, setItemName] = useState("");
     const [itemPrice, setItemPrice] = useState(1.00);
     const [itemDesc, setItemDesc] = useState("");
@@ -15,6 +19,19 @@ function MenuItemForm({item, btnText, num, btnAction})
     const [displayEditList, setDisplayEditList] = useState(false);
 
     const [updateListKey, setUpdateListKey] = useState("");
+    const [categories, setCategories] = useState([]);
+    const [isCategoriesUpdated, updateCategories] = useState(false);
+    const [displayCategory, setDisplayCategory] = useState(false);
+    const [newCategoryName, setNewCategoryName] = useState("");
+
+    useEffect(() => {
+        if(!isCategoriesUpdated)
+        {
+            axios.get(import.meta.env.VITE_SERVER_API + "/Category/")
+            .then((res) => setCategories(res.data))
+            .finally(() => updateCategories(true))
+        }
+    }, [isCategoriesUpdated])
 
     useEffect(() => {
         if(!item) {return;}
@@ -25,6 +42,17 @@ function MenuItemForm({item, btnText, num, btnAction})
         setImg(item.image);
         setCustoms(JSON.parse(item.customs));
     },[item])
+
+    function createNewCategory()
+    {
+        const data = {
+            name: newCategoryName
+        }
+
+        axios.post(import.meta.env.VITE_SERVER_API + "/Category/CreateCategory", data, {headers: {Authorization: token}})
+        .then(() => setDisplayCategory(false))
+        .finally(() => updateCategories(false));
+    }
 
     function addOptToList(e)
     {
@@ -172,17 +200,44 @@ function MenuItemForm({item, btnText, num, btnAction})
                     <div className="modal-body">
                         <Card.Img variant="top" style={{ "objectFit": "contain", "aspectRatio": "1/1", "width": "100%"}} src={img} alt={itemName} />
 
-                        <div className="mt-2">
-                        <   label htmlFor={"form-desc" + num} className="form-label">Description</label>
-                            <input id={"form-desc" + num} className="form-control" placeholder="Details" value={itemDesc} onChange={(e) => setItemDesc(e.target.value)}/>
-                        </div>
-                        
-                        <div className="mt-2">
+                        <div className="mt-4">
                             <label htmlFor={"form-price" + num} className="form-label">Price</label>
                             <input id={"form-price" + num} type="number" min="1" className="form-control" placeholder="Price" value={itemPrice} onChange={(e) => setItemPrice(e.target.value)} />
                         </div>
 
-                        <div className="mt-2">
+                        <div className="mt-4">
+                            <label htmlFor={"form-category" + num} className="form-label">Category</label>
+                            <select defaultValue={categories && categories[0] ? categories[0]._id : "0"} id={"form-category" + num} className="form-select" aria-label="Default select example">
+                                {
+                                    categories.map((c, i) => {
+                                        return <option value={c._id} key={i}>{c.name}</option>
+                                    })
+                                }
+                            </select>
+
+                            <Button className={"mt-2 col-12 " + (displayCategory ? "btn-danger" : "btn-dark")} onClick={() => setDisplayCategory(!displayCategory)}>
+                                {displayCategory ? "Close" : "Create Category"}
+                            </Button>
+
+                            {
+                                (displayCategory)
+                                    ?   <div className="mt-4 border p-4">
+                                            <label htmlFor={"form-category" + num} className="form-label">New Category Name</label>
+                                            <input id={"form-category" + num} className="form-control" placeholder="Category Name" value={newCategoryName} onChange={(e) => setNewCategoryName(e.target.value)}/>
+                                            <Button onClick={() => createNewCategory()} className="btn-success mt-2">Create</Button>
+                                        </div>
+                                    : ""
+                            }
+                            
+
+                        </div>
+                        
+                        <div className="mt-4">
+                            <label htmlFor={"form-desc" + num} className="form-label">Description</label>
+                            <input id={"form-desc" + num} className="form-control" placeholder="Details" value={itemDesc} onChange={(e) => setItemDesc(e.target.value)}/>
+                        </div>
+
+                        <div className="mt-4">
                             <label htmlFor={"form-image" + num} className="form-label">Image URL</label>
                             <input id={"form-image" + num} value={img} onChange={(e) => setImg(e.target.value)} className="form-control" placeholder="Image" />
                         </div>

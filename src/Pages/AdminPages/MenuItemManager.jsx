@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
-import MenuItemCard from "../../Components/MenuItemCard";
-import MenuItem from "../../Components/MenuItem";
 import AdminMenuItem from "../../Components/AdminMenuItem";
-import { Button, Card } from "react-bootstrap";
 import MenuItemForm from "../../Forms/MenuItemForm";
 import axios from "axios";
 import { useSelector } from "react-redux";
@@ -18,7 +15,7 @@ function MenuManager()
         {
             axios.get(import.meta.env.VITE_SERVER_API + "/MenuItem/")
             .then((res) => setMenuItems(res.data))
-            .then(() => setIsUpdated(true));
+            .then (setIsUpdated(true));
         }
     }, [isUpdated])
 
@@ -39,7 +36,7 @@ function MenuManager()
             <div className="d-flex row justify-content-start">
 
                 <div data-bs-toggle="modal" data-bs-target="#menuItemFormModal-1" className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 p-2 flex-grow-1 d-flex align-items-stretch">
-                    <div role="button" className="rounded flex-grow-1 d-flex justify-content-center align-items-center p-4" style={{"border": "dashed 1px white"}}>
+                    <div role="button" className="rounded flex-grow-1 d-flex justify-content-center align-items-center p-4" style={{"border": "dashed 1.5px white"}}>
                         <h2>Create New Item</h2>
                     </div>
                 </div>
