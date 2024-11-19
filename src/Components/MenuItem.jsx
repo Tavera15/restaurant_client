@@ -42,9 +42,6 @@ function MenuItem({name, price, desc, customs, id, img})
                 <Card.Body className="bg-dark">
                     <Card.Title>{name}</Card.Title>
                     <Card.Text>
-                    {desc}
-                    </Card.Text>
-                    <Card.Text>
                         ${price}
                     </Card.Text>
                     <Form className="form-group col-12" onSubmit={(e) => AddToCart(e)}>
@@ -62,7 +59,12 @@ function MenuItem({name, price, desc, customs, id, img})
                                 <div className="modal-body">
                                     <Card.Img variant="top" style={{ "objectFit": "contain", "aspectRatio": "1/1", "width": "100%"}} src={img ? img : "holder.js/100px180"} alt={id} />
 
+                                    <Card.Text>
+                                        {desc}
+                                    </Card.Text>
+                                    
                                     <div className="mt-4 d-flex justify-content-center col-12 align-items-center col">
+
 
                                       <Button type="image" className="bg-transparent" style={{"border": "none"}} onClick={(e) => counter(e, -1)}>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="red" className="bi bi-dash-circle-fill" viewBox="0 0 16 16">

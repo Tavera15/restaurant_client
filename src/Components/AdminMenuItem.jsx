@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Card, Form } from "react-bootstrap";
 import MenuItemForm from "../Forms/MenuItemForm";
 import DeleteMenuItemForm from "../Forms/DeleteMenuItemForm";
@@ -8,6 +8,12 @@ import { useSelector } from "react-redux";
 function AdminMenuItem({item, num, id, updateFunction})
 {
     const token = useSelector(state => state.token.value);
+    const [categoryName, setCategoryName] = useState("")
+
+    useEffect(() => {
+        axios.get(import.meta.env.VITE_SERVER_API + "/category/" + item.category)
+        .then((res) => console.log(res.data))
+    }, [])
 
     function UpdateMenuItem(e, data)
     {
@@ -23,9 +29,6 @@ function AdminMenuItem({item, num, id, updateFunction})
                 <Card.Img style={{ "objectFit": "contain", "aspectRatio": "1/1", "width": "100%"}} variant="top" src={item.image ? item.image : "holder.js/100px180"} alt={id}/>
                 <Card.Body className="bg-dark">
                     <Card.Title>{item.name}</Card.Title>
-                    <Card.Text>
-                    {item.description}
-                    </Card.Text>
                     <Card.Text>
                         ${item.price}
                     </Card.Text>

@@ -15,6 +15,8 @@ function MenuItemForm({item, btnText, num, btnAction})
     const [listOpt, setListOpt] = useState("");
     const [img, setImg] = useState("");
     const [customs, setCustoms] = useState({});
+    const [category, setCategory] = useState("");
+
     const [displayCustoms, setDisplayCustoms] = useState(false);
     const [displayEditList, setDisplayEditList] = useState(false);
 
@@ -35,11 +37,12 @@ function MenuItemForm({item, btnText, num, btnAction})
 
     useEffect(() => {
         if(!item) {return;}
-
+        
         setItemName(item.name);
         setItemDesc(item.description);
         setItemPrice(item.price);
         setImg(item.image);
+        setCategory(item.category);
         setCustoms(JSON.parse(item.customs));
     },[item])
 
@@ -50,6 +53,7 @@ function MenuItemForm({item, btnText, num, btnAction})
         }
 
         axios.post(import.meta.env.VITE_SERVER_API + "/Category/CreateCategory", data, {headers: {Authorization: token}})
+        .then((res) => setCategory(res.data._id))
         .then(() => setDisplayCategory(false))
         .finally(() => updateCategories(false));
     }
@@ -179,7 +183,7 @@ function MenuItemForm({item, btnText, num, btnAction})
             "name": itemName,
             "description": itemDesc, 
             "price": itemPrice, 
-            "categoryId": "66300cc024d6df44c8c0e697", 
+            "categoryId": category, 
             "image": img,
             "customs": customs
         }
@@ -199,7 +203,6 @@ function MenuItemForm({item, btnText, num, btnAction})
                     </div>
                     <div className="modal-body">
                         <Card.Img variant="top" style={{ "objectFit": "contain", "aspectRatio": "1/1", "width": "100%"}} src={img} alt={itemName} />
-
                         <div className="mt-4">
                             <label htmlFor={"form-price" + num} className="form-label">Price</label>
                             <input id={"form-price" + num} type="number" min="1" className="form-control" placeholder="Price" value={itemPrice} onChange={(e) => setItemPrice(e.target.value)} />
@@ -207,7 +210,7 @@ function MenuItemForm({item, btnText, num, btnAction})
 
                         <div className="mt-4">
                             <label htmlFor={"form-category" + num} className="form-label">Category</label>
-                            <select defaultValue={categories && categories[0] ? categories[0]._id : "0"} id={"form-category" + num} className="form-select" aria-label="Default select example">
+                            <select onChange={(e) => setCategory(e.target.value)} value={(category) ? category : ""} id={"form-category" + num} className="form-select" aria-label="Default select example">
                                 {
                                     categories.map((c, i) => {
                                         return <option value={c._id} key={i}>{c.name}</option>
@@ -228,7 +231,6 @@ function MenuItemForm({item, btnText, num, btnAction})
                                         </div>
                                     : ""
                             }
-                            
 
                         </div>
                         
