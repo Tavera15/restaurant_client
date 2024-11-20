@@ -57,12 +57,12 @@ function ProfilePage()
     }
 
     return(
-        <div className="container-fluid flex-row-wrap center-items">
-            <div className="row align-items-start">
+        <div className="container-fluid min-vh-100 col-12 flex-row-wrap center-items">
+            <div className="row border col-12 align-items-start">
                 <AccountNav />
-                <div className="container col-md-6">
+                <div className="container col-sm-8">
                     <h1>Profile</h1>
-                    <Form onSubmit={(e) => UpdateProfile(e)}>
+                    <Form className="" onSubmit={(e) => UpdateProfile(e)}>
                         <div className="form-row row">
                             <div className="form-group col-md-4 mt-3">
                                 <label htmlFor="inputName">Name</label>

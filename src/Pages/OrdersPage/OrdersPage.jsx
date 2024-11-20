@@ -13,35 +13,37 @@ function OrdersPage()
     }, [])
 
     return(
-        <div className="container-fluid flex-row-wrap center-items">
-            <div className="row align-items-start">
+        <div className="container-fluid min-vh-100 col-12 flex-row-wrap center-items">
+            <div className="row border col-12 align-items-start">
                 <AccountNav />
                 <div className="container col-sm-8">
                     <h1>Orders</h1>
-                    <Table responsive variant="dark">
-                        <thead>
-                            <tr>
-                            <th>#</th>
-                            <th>Order Number</th>
-                            <th>Total</th>
-                            <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                orders.map((o, i) => {
-                                    return (
-                                        <tr key={i}>
-                                            <td className="align-middle">{index+1}</td>
-                                            <td className="align-middle">366234</td>
-                                            <td className="align-middle">$23.78</td>
-                                            <td className="align-middle"><Button>View</Button></td>
-                                        </tr>
-                                    )
-                                })
-                            }
-                        </tbody>
-                    </Table>
+                    <div className="table-responsive">
+                        <Table className="table" variant="dark">
+                            <thead>
+                                <tr>
+                                <th>#</th>
+                                <th>Order Number</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    orders.map((o, i) => {
+                                        return (
+                                            <tr role="button" onClick={() => console.log(o._id)} key={i}>
+                                                <td className="align-middle">{i+1}</td>
+                                                <td className="align-middle">{o._id}</td>
+                                                <td className="align-middle">${o.grand_total.toFixed(2)}</td>
+                                                <td className="align-middle">{o.status}</td>
+                                            </tr>
+                                        )
+                                    })
+                                }
+                            </tbody>
+                        </Table>
+                    </div>
                 </div>
             </div>
         </div>
