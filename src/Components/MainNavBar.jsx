@@ -8,7 +8,7 @@ function MainNavBar()
     return(
         <Navbar collapseOnSelect expand="sm" bg="dark" data-bs-theme="light" className="bg-body-tertiary navbar-dark bg-body-tertiary">
             <Container>
-                <Link className="navbar-brand" to="/"><img width="" height="48" src={logo} alt="navbar-logo" /></Link>
+                <Link className="navbar-brand" to="/"><img width="" height="64" src={logo} alt="navbar-logo" /></Link>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="me-auto">
@@ -16,7 +16,6 @@ function MainNavBar()
                 <Nav >
                     <Link className="nav-link" to="/Menu">Menu</Link>
                     <Link className="nav-link" to="/Cart">Cart</Link>
-                    <Link className="nav-link" to="/Account/Profile">Account</Link>
                     <Link className="nav-link" to="/Account/Profile">Account</Link>
                 </Nav>
                 </Navbar.Collapse>

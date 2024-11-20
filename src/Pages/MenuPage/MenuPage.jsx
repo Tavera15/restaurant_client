@@ -8,17 +8,37 @@ function MenuPage()
 {
     const [menuItems, setMenuItems] = useState([]);
     const [isLoaded, setLoading] = useState(false);
+    const [filter, setFilter] = useState("673c1b7dc591ae2bf94fb02a");
+    const [filteredItems, setFilterItems] = useState([]);
 
     useEffect(() => {
         axios.get(import.meta.env.VITE_SERVER_API + "/MenuItem/")
-            .then((res) => setMenuItems(res.data))
-            .then(() => setLoading(true));
+            .then((res) => {
+                setMenuItems(res.data)
+                setFilterItems(res.data)
+            })
+            .finally(() => setLoading(true));
     }, [isLoaded])
+
+    useEffect(() => {
+        if(filter === "")
+        {
+            setFilterItems(menuItems)
+        }
+        else
+        {
+            const res = menuItems.filter((item, i) => {
+                return item.category === filter;
+            })
+
+            setFilterItems(res)
+        }
+    },[filter]);
 
     return(
         <div className="container-fluid flex-row-wrap center-items">
             <div className="row align-items-start">
-                <MenuNav />
+                <MenuNav filter={(f) => setFilter(f)} />
       
                 <div className="col container">
                     <video src={menuVideo} className="rest_video" autoPlay muted loop 
@@ -27,7 +47,7 @@ function MenuPage()
 
                     <div className="containers p-2 d-flex row justify-content-start food-items" >
                         {
-                            menuItems.map((m, i) => {
+                            filteredItems.map((m, i) => {
                                 return <MenuItem 
                                             name={m.name} 
                                             price={m.price} 

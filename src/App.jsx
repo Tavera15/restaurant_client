@@ -54,8 +54,6 @@ function App() {
             }
           />
 
-          <Route exact path='/Admin/Category' element={<CategoryManager />}></Route>
-
         </Routes>
         <Footer />
       </Router>

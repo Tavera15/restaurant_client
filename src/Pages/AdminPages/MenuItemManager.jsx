@@ -3,6 +3,7 @@ import AdminMenuItem from "../../Components/AdminMenuItem";
 import MenuItemForm from "../../Forms/MenuItemForm";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import MainNavBar from "../../Components/MainNavBar";
 
 function MenuManager()
 {
@@ -27,6 +28,7 @@ function MenuManager()
 
     return(
         <div className="min-vh-100 container">
+            <MainNavBar />
             <h1>Menu Manager</h1>
 
             <div>
