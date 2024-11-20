@@ -82,6 +82,7 @@ export const cartSlice = createSlice({
   initialState: {
     cart: "",
     items: [],
+    total: 0.00,
     isLoading: false,
     hasError: false
   },
@@ -94,6 +95,7 @@ export const cartSlice = createSlice({
       .addCase(getCartItems.fulfilled, (state, action) => {
         state.cart = action.payload._id;
         state.items = action.payload.items;
+        state.total = action.payload.total;
         state.isLoading = false;
         state.hasError = false;
         

@@ -44,6 +44,7 @@ function CartItem({id, reloadFunction})
         }
         
         await dispatch(editCartItem(data));
+        reloadFunction(false);
         setCartItemCard();
     }
 
@@ -76,8 +77,10 @@ function CartItem({id, reloadFunction})
             <div className="row">
               <div className="col-lg-3 col-md-12 mb-4 mb-lg-0">
                 <div className="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
-                  <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Vertical/12a.webp"
-                    className="w-100 rounded" alt="Blue Jeans Jacket" />
+                  <img src={menuItem.image ? menuItem.image : "holder.js/100px180"}
+                    className="w-100 rounded bg-light" alt={cartItem._id} style={{ "objectFit": "contain", "aspectRatio": "1/1", "width": "100%"}}
+                  
+                  />
                   <a href="#!">
                     <div className="mask"></div>
                   </a>
@@ -183,7 +186,7 @@ function CartItem({id, reloadFunction})
                   <strong>Qty: {cartItem.quantity}</strong>
                 </p>
                 <p className="text-start text-md-center">
-                  <strong>${menuItem.price ? menuItem.price.toFixed(2) : 0.00}</strong>
+                  <strong>${menuItem.price ? (menuItem.price * cartItem.quantity).toFixed(2) : 0.00}</strong>
                 </p>
 
                 <Button  type="button" data-bs-toggle="modal" data-bs-target={"#exampleModalCenter" + id } data-mdb-button-init data-mdb-ripple-init className="btn btn-primary btn-sm me-1 mb-2" data-mdb-tooltip-init

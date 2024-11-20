@@ -43,7 +43,7 @@ function MenuNav()
 
                             <hr />
 
-                            <Link to="/" className="col-12 nav-link mb-2">
+                            <Link to="/Cart" className="col-12 nav-link mb-2">
                                 <p className="fs-4" >Cart</p>
                             </Link>
     

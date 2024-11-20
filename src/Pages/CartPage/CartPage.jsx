@@ -8,18 +8,22 @@ import { clearCart, getCartItems } from "../../Features/CartSlice";
 function CartPage()
 {
     const dispatch = useDispatch();
-    const cartId = useSelector(state => state.cart.cart);
+    const total = useSelector(state => state.cart.total);
     const items = useSelector(state => state.cart.items);
     const [isUpdated, setIsUpdated] = useState(false);
 
     useEffect(() => {
 
-        if(!isUpdated)
+        async function cartUpdate()
         {
-            console.log("here")
-            dispatch(getCartItems());
-            setIsUpdated(true);
-        } 
+            if(!isUpdated)
+            {
+                await dispatch(getCartItems());
+                setIsUpdated(true);
+            }
+        }
+
+        cartUpdate()
         
     }, [isUpdated])
 
@@ -59,12 +63,8 @@ function CartPage()
                     <div className="col-12 col-md-6 mt-4 mt-md-0 summary">
                         <h4>Summary</h4>
                         <div className="flex-row-wrap border-top">
-                            <div className="col">ITEMS 3</div>
-                            <div className="col text-right">&euro; 132.00</div>
-                        </div>
-                        <div className="flex-row-wrap" >
                             <div className="col">TOTAL PRICE</div>
-                            <div className="col text-right">&euro; 137.00</div>
+                            <div className="col text-right">${total.toFixed(2)}</div>
                         </div>
                         <div className="my-4 d-flex btn-group-justified justify-content-evenly">
                             <Button type="reset" onClick={(e) => ClearCart(e)} className="btn" variant="danger" style={{width: "7rem"}}>Clear</Button>
