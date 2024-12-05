@@ -1,4 +1,5 @@
 import React from "react";
+import { Carousel } from "react-bootstrap";
 import restVideo from "../../StaticMedia/RestVideo1.mp4";
 import logo from "../../StaticMedia/TheGuyLogo.png";
 import "./HomePage.css";
@@ -6,6 +7,9 @@ import { Link } from "react-router-dom";
 import { Card } from "react-bootstrap";
 import spaghetti from "../../StaticMedia/spaghetti1.jpeg";
 import MainNavBar from "../../Components/MainNavBar";
+import about_plate from "../../StaticMedia/about_plate.png"
+import lasagna from "../../StaticMedia/lasagna.png";
+
 
 function HomePage()
 {
@@ -20,24 +24,50 @@ function HomePage()
                 <video src={restVideo} className="rest_video" autoPlay muted loop />
             </div>
 
-            <div className="container p-4 col-12 col-md-7 about-us">
-                <h1 className="mb-4">THE GUY'S RESTAURANTS IN HUMBLE AREA & PEARLAND TX</h1>
-                <hr/>
-                <p>The popular Italiano's Restaurant, known across the Houston area for serving delicious, authentic Italian food, is the go-to place for an affordable dinner or lunch in Humble, Atascocita, Kingwood and Pearland TX.  Whether you want to dine in, order take-out, or find the best Italian catering in the Houston area, you are in for a treat!</p>
-                <p>As you open the door, you are greeted with the aroma of garlic, olive oil, and steaming tomatoes from our homemade marinara and tomato sauce lovingly made with the freshest of vegetables.</p>
-                <p>Once you take a bite of our complimentary homemade garlic rolls, your taste buds will come alive and you’ll know you are in for a wonderful meal.</p>
-                <p>At The Guy's, our excellent staff are always welcoming, personable, and go the extra mile to ensure your visit is an enjoyable pleasure you’ll want to repeat and tell others about.</p>
+            <div className="p-4 col-12 d-flex col flex-wrap align-items-center justify-content-end about-us" >
+                <div className="col-12 col-sm-6 p-4 text-dark border-top border-bottom border-success border-4">
+                    <h1 className="mb-4">THE GUY'S RESTAURANTS IN HUMBLE AREA & PEARLAND TX</h1>
+                    <hr/>
+                    <h5 className="fs-6">The popular Italiano's Restaurant, known across the Houston area for serving delicious, authentic Italian food, is the go-to place for an affordable dinner or lunch in Humble, Atascocita, Kingwood and Pearland TX.  Whether you want to dine in, order take-out, or find the best Italian catering in the Houston area, you are in for a treat!</h5>
+                </div>
+                <img src={about_plate} className="col-12 col-sm-3" alt="about-plate"/>
+                <img src={lasagna} className="col-12 col-sm-3" alt="about-plate2"/>
             </div>
 
-            <div className="menu-section" style={{backgroundImage: `url(${spaghetti})`}}>
-                <div className="shader p-4 inner-menu-section">
-                    <h4 className="mb-4">We offer an outstanding selection of Italian cuisine, fine wines and specialty cocktails since 1986.</h4>
-                    <Link className="btn btn-light menu-btn">View Our Menu</Link>
+            <div className="menu-section">
+                <div className="p-4 col-12 d-flex col flex-wrap align-items-center justify-content-end about-us">
+                    <div className="col-12 col-sm-6 p-0 mb-4 d-block">
+                        <Carousel className="col-12 m-0">
+                            <Carousel.Item className="carouselItem">
+                                <img src= "https://popmenucloud.com/cdn-cgi/image/width%3D1200%2Cheight%3D1200%2Cfit%3Dscale-down%2Cformat%3Dauto%2Cquality%3D60/prlmzhet/8953a0a0-3527-4312-b5ea-db8c0c3c4e17.jpg"
+                                alt="fav1" className="col-12" 
+                                style={{
+                                    "height": "30rem",
+                                    "objectFit": "cover"}}/>
+                            </Carousel.Item>
+                            <Carousel.Item className="carouselItem">
+                                <img src= "https://www.tastingtable.com/img/gallery/20-italian-dishes-you-need-to-try-at-least-once/lasagna-1702481392.jpg"
+                                alt="fav1" className="col-12" 
+                                style={{
+                                    "height": "30rem",
+                                    "objectFit": "cover"}}/>
+                            </Carousel.Item>
+                            
+
+                        </Carousel>
+                    </div>
+
+                    <div className="col-12 col-sm-6 p-4 text-dark border-top border-bottom border-danger border-4">
+                        <h1 className="">We offer an outstanding selection of Italian cuisine, fine wines and specialty cocktails since 1986.</h1>
+                        <Link className="btn btn-lg btn-light menu-btn">View Our Menu</Link>
+                    </div>
                 </div>
             </div>
 
-            <div className="p-4">
-                <h1>Live Performances</h1>
+            <div className="menu-section" style={{backgroundImage: "url(https://images.pexels.com/photos/370984/pexels-photo-370984.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)"}}>
+                <div className="p-4 shader">
+
+                <h1 className="display-1">Live Performances</h1>
                 <hr />
                 <div className="container flex-row-wrap center-items">
                     <div className="col-12 col-md-4 p-2">
@@ -106,16 +136,18 @@ function HomePage()
                             </Card.Body>
                         </Card>
                     </div>
+                    </div>
                 </div>
             </div>
 
-            <div className="menu-section" style={{backgroundImage: "url(https://images.pexels.com/photos/370984/pexels-photo-370984.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)"}}>
-                <div className="shader p-4 inner-menu-section">
+            <div className="">
+                <div className="p-4 inner-menu-section">
                     <h1 className="mb-2">Experience the Food as Never Before</h1>
                     <h3 className="mb-4">Come Dine at The Guy's</h3>
                     <Link className="btn btn-light menu-btn">Make a Reservation</Link>
                 </div>
             </div>
+            <hr/>
         </div>
     )
 }

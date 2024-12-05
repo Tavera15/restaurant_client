@@ -14,7 +14,7 @@ function OrdersPage()
 
     return(
         <div className="container-fluid min-vh-100 col-12 flex-row-wrap center-items">
-            <div className="row border col-12 align-items-start">
+            <div className="row col-12 align-items-start">
                 <AccountNav />
                 <div className="container col-sm-8">
                     <h1>Orders</h1>

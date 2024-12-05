@@ -8,8 +8,8 @@ function MenuPage()
 {
     const [menuItems, setMenuItems] = useState([]);
     const [isLoaded, setLoading] = useState(false);
-    const [filter, setFilter] = useState("673c1b7dc591ae2bf94fb02a");
     const [filteredItems, setFilterItems] = useState([]);
+    const [filter, setFilter] = useState("673c1b7dc591ae2bf94fb02a");
 
     useEffect(() => {
         axios.get(import.meta.env.VITE_SERVER_API + "/MenuItem/")

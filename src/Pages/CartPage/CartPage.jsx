@@ -99,7 +99,7 @@ function CartPage()
                         <h4>Summary</h4>
                         <div className="flex-row-wrap border-top">
                             <div className="col">TOTAL PRICE</div>
-                            <div className="col text-right">${total.toFixed(2)}</div>
+                            <div className="col text-right">${(total || 0).toFixed(2)}</div>
                         </div>
                         <div className="my-4 d-flex btn-group-justified justify-content-evenly">
                             <Button type="reset" onClick={(e) => ClearCart(e)} className="btn" variant="danger" style={{width: "7rem"}}>Clear</Button>

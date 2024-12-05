@@ -14,7 +14,7 @@ function SignInPage()
             <div className="signin-bg d-flex">
                 <div className="shader d-flex">
                     <div className="flex-row-wrap container">
-                        <div className="flex-row-wrap container center-items">
+                        <div className="flex-row-wrap container center-items align-items-center">
                             {
                                 showLogin ? <LoginForm setShowLogin={setShowLogin}/> : <SignUpForm setShowLogin={setShowLogin} />
                             }
