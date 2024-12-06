@@ -58,51 +58,18 @@ function HomePage()
                     </div>
 
                     <div className="col-12 col-sm-6 p-4 text-dark border-top border-bottom border-danger border-4">
-                        <h1 className="">We offer an outstanding selection of Italian cuisine, fine wines and specialty cocktails since 1986.</h1>
+                        <h2>We offer an outstanding selection of Italian cuisine, fine wines and specialty cocktails since 1986.</h2>
                         <Link className="btn btn-lg btn-light menu-btn">View Our Menu</Link>
                     </div>
                 </div>
             </div>
 
-            <div className="menu-section" style={{backgroundImage: "url(https://images.pexels.com/photos/370984/pexels-photo-370984.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)"}}>
+            <div className="menu-section text-bwlack" style={{"backgroundImage": "url(https://images.pexels.com/photos/370984/pexels-photo-370984.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)"}}>
                 <div className="p-4 shader">
 
                 <h1 className="display-1">Live Performances</h1>
                 <hr />
                 <div className="container flex-row-wrap center-items">
-                    <div className="col-12 col-md-4 p-2">
-                        <Card className="">
-                            <Card.Img variant="top" src="https://static.animecorner.me/2022/02/SiM_ArtistPhotos-1.jpg" />
-                            <Card.Body className="bg-dark">
-                                <Card.Title>SiM</Card.Title>
-                                <Card.Text>
-                                May 5
-                                </Card.Text>
-                            </Card.Body>
-                        </Card>
-                    </div>
-                    <div className="col-12 col-md-4 p-2">
-                        <Card className="">
-                            <Card.Img variant="top" src="https://static.animecorner.me/2022/02/SiM_ArtistPhotos-1.jpg" />
-                            <Card.Body className="bg-dark">
-                                <Card.Title>SiM</Card.Title>
-                                <Card.Text>
-                                May 5
-                                </Card.Text>
-                            </Card.Body>
-                        </Card>
-                    </div>
-                    <div className="col-12 col-md-4 p-2">
-                        <Card className="">
-                            <Card.Img variant="top" src="https://static.animecorner.me/2022/02/SiM_ArtistPhotos-1.jpg" />
-                            <Card.Body className="bg-dark">
-                                <Card.Title>SiM</Card.Title>
-                                <Card.Text>
-                                May 5
-                                </Card.Text>
-                            </Card.Body>
-                        </Card>
-                    </div>
                     <div className="col-12 col-md-4 p-2">
                         <Card className="">
                             <Card.Img variant="top" src="https://static.animecorner.me/2022/02/SiM_ArtistPhotos-1.jpg" />
