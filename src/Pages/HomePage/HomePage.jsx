@@ -110,8 +110,7 @@ function HomePage()
             <div className="">
                 <div className="p-4 inner-menu-section">
                     <h1 className="mb-2">Experience the Food as Never Before</h1>
-                    <h3 className="mb-4">Come Dine at The Guy's</h3>
-                    <Link className="btn btn-light menu-btn">Make a Reservation</Link>
+                    <h3 className="mb-2">Come Dine at The Guy's</h3>                    
                 </div>
             </div>
             <hr/>
