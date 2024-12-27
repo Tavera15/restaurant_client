@@ -4,11 +4,10 @@ import restVideo from "../../StaticMedia/RestVideo1.mp4";
 import logo from "../../StaticMedia/TheGuyLogo.png";
 import "./HomePage.css";
 import { Link } from "react-router-dom";
-import { Card } from "react-bootstrap";
-import spaghetti from "../../StaticMedia/spaghetti1.jpeg";
 import MainNavBar from "../../Components/MainNavBar";
 import about_plate from "../../StaticMedia/about_plate.png"
 import lasagna from "../../StaticMedia/lasagna.png";
+import MusicCard from "../../Components/MusicCard";
 
 
 function HomePage()
@@ -64,45 +63,26 @@ function HomePage()
                 </div>
             </div>
 
-            <div className="menu-section text-bwlack" style={{"backgroundImage": "url(https://images.pexels.com/photos/370984/pexels-photo-370984.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)"}}>
+            <div className="menu-section" style={{"backgroundImage": "url(https://images.pexels.com/photos/370984/pexels-photo-370984.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)"}}>
                 <div className="p-4 shader">
 
-                <h1 className="display-1">Live Performances</h1>
-                <hr />
-                <div className="container flex-row-wrap center-items">
-                    <div className="col-12 col-md-4 p-2">
-                        <Card className="">
-                            <Card.Img variant="top" src="https://static.animecorner.me/2022/02/SiM_ArtistPhotos-1.jpg" />
-                            <Card.Body className="bg-dark">
-                                <Card.Title>SiM</Card.Title>
-                                <Card.Text>
-                                May 5
-                                </Card.Text>
-                            </Card.Body>
-                        </Card>
-                    </div>
-                    <div className="col-12 col-md-4 p-2">
-                        <Card className="">
-                            <Card.Img variant="top" src="https://static.animecorner.me/2022/02/SiM_ArtistPhotos-1.jpg" />
-                            <Card.Body className="bg-dark">
-                                <Card.Title>SiM</Card.Title>
-                                <Card.Text>
-                                May 5
-                                </Card.Text>
-                            </Card.Body>
-                        </Card>
-                    </div>
-                    <div className="col-12 col-md-4 p-2">
-                        <Card className="">
-                            <Card.Img variant="top" src="https://static.animecorner.me/2022/02/SiM_ArtistPhotos-1.jpg" />
-                            <Card.Body className="bg-dark">
-                                <Card.Title>SiM</Card.Title>
-                                <Card.Text>
-                                May 5
-                                </Card.Text>
-                            </Card.Body>
-                        </Card>
-                    </div>
+                    <h1 className="display-1">Live Performances</h1>
+                    <hr />
+                    <div className="container flex-row-wrap center-items">
+                        <MusicCard
+                            performer="SiM"
+                            date="May 10"
+                            img="https://static.animecorner.me/2022/02/SiM_ArtistPhotos-1.jpg"/>
+
+                        <MusicCard 
+                            performer="Lilypichu"
+                            date="May 11"
+                            img="https://cdn-images.dzcdn.net/images/cover/6b2f8b3ff0e6cd136e685afa2940fcba/0x1900-000000-80-0-0.jpg"/>
+                        
+                        <MusicCard
+                            performer="Los Angeles Azules"
+                            date="May 24"
+                            img="https://i.scdn.co/image/ab67616d00001e02b017ddd6dc1835dcb15c9e3b"/>
                     </div>
                 </div>
             </div>
