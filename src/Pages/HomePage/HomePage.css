@@ -26,6 +26,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-color: rgb(255, 235, 205);
+    background-color: inherit;
 }
 
 .inner-menu-section{
@@ -46,18 +47,20 @@
 .menu-btn{
     border: double;
     border-width: 10px;
-    background-color: blanchedalmond;
-    border-color: black;
+    background-color: inherit;
+    border-color: blanchedalmond;
+    color: blanchedalmond;
 }
 
 .menu-btn:hover{
-    background-color: rgb(39, 39, 38);
-    color: blanchedalmond;
-    border-color: blanchedalmond;
+    background-color: blanchedalmond;
+    border-color: black;
 }
 
 .about-us{
     background-color: rgb(144, 104, 45);
     background-color: rgb(255, 235, 205);
+    background-color: inherit;
+    color: antiquewhite;
     border-width: 20px;
 }

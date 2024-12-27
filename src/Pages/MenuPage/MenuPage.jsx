@@ -36,16 +36,16 @@ function MenuPage()
     },[filter]);
 
     return(
-        <div className="container-fluid flex-row-wrap center-items">
+        <div className="container-fluid flex-row-wrap center-items" >
             <div className="row align-items-start">
                 <MenuNav filter={(f) => setFilter(f)} />
       
-                <div className="col container">
+                <div className="col container" >
                     <video src={menuVideo} className="rest_video" autoPlay muted loop 
                         style={{height: "24rem", objectFit: "cover", backgroundColor: "rgba(0,0,0,.5)", filter: "blur(0.4px) brightness(64%)"}} 
                     />
 
-                    <div className="containers p-2 d-flex row justify-content-start food-items" >
+                    <div className="containers p-2 d-flex row justify-content-start food-items">
                         {
                             filteredItems.map((m, i) => {
                                 return <MenuItem 

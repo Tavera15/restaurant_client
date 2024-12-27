@@ -49,7 +49,7 @@ function MenuNav({filter})
                                 </div>
                             </div>
 
-                            <div style={{"border": "ridge white 10px"}}>
+                            <div style={{"border": "solid white 4px"}}>
                                 <div role="button" onClick={() => filter("")} className="col-12 nav-link">
                                     <p className="fs-4 m-0 p-1 border">Full Menu</p>
                                 </div>

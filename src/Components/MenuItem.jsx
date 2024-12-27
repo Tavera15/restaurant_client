@@ -37,15 +37,15 @@ function MenuItem({name, price, desc, customs, id, img})
 
     return(
         <div className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 p-2">
-            <Card>
-                <Card.Img variant="top" style={{ "objectFit": "contain", "aspectRatio": "1/1", "width": "100%"}} src={img ? img : "holder.js/100px180"} alt={id} />
+            <Card className="">
+                <Card.Img variant="top" className="bg-light" style={{ "objectFit": "contain", "aspectRatio": "1/1", "width": "100%"}} src={img ? img : "holder.js/100px180"} alt={id} />
                 <Card.Body className="bg-dark">
                     <Card.Title>{name}</Card.Title>
                     <Card.Text>
                         ${price}
                     </Card.Text>
                     <Form className="form-group col-12" onSubmit={(e) => AddToCart(e)}>
-                        <Button className="col-12" variant="outline-light" data-bs-toggle="modal" data-bs-target={"#exampleModalCenter" + id}>Add to cart</Button>
+                        <Button className="col-12" variant="success" data-bs-toggle="modal" data-bs-target={"#exampleModalCenter" + id}>Add to cart</Button>
 
                         <div className="modal fade" id={"exampleModalCenter" + id} tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div className="modal-dialog modal-dialog-centered" role="document">

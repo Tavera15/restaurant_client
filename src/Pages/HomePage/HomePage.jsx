@@ -25,7 +25,7 @@ function HomePage()
             </div>
 
             <div className="p-4 col-12 d-flex col flex-wrap align-items-center justify-content-end about-us" >
-                <div className="col-12 col-sm-6 p-4 text-dark border-top border-bottom border-success border-4">
+                <div className="col-12 col-sm-6 p-4 border-top border-bottom border-success border-4">
                     <h1 className="mb-4">THE GUY'S RESTAURANTS IN HUMBLE AREA & PEARLAND TX</h1>
                     <hr/>
                     <h5 className="fs-6">The popular Italiano's Restaurant, known across the Houston area for serving delicious, authentic Italian food, is the go-to place for an affordable dinner or lunch in Humble, Atascocita, Kingwood and Pearland TX.  Whether you want to dine in, order take-out, or find the best Italian catering in the Houston area, you are in for a treat!</h5>
@@ -57,7 +57,7 @@ function HomePage()
                         </Carousel>
                     </div>
 
-                    <div className="col-12 col-sm-6 p-4 text-dark border-top border-bottom border-danger border-4">
+                    <div className="col-12 col-sm-6 p-4 border-top border-bottom border-danger border-4">
                         <h2>We offer an outstanding selection of Italian cuisine, fine wines and specialty cocktails since 1986.</h2>
                         <Link className="btn btn-lg btn-light menu-btn">View Our Menu</Link>
                     </div>
