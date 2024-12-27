@@ -51,8 +51,6 @@ function HomePage()
                                     "height": "30rem",
                                     "objectFit": "cover"}}/>
                             </Carousel.Item>
-                            
-
                         </Carousel>
                     </div>
 

@@ -1,7 +1,9 @@
 import React, {useState} from "react";
-import { Offcanvas, Button, Navbar } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Offcanvas, Navbar } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../StaticMedia/TheGuyLogo.png";
+import { userLogout } from "../Features/TokenSlice";
 
 function AccountNav()
 {
@@ -9,6 +11,16 @@ function AccountNav()
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    async function handleLogout(e)
+    {
+        e.preventDefault();
+        await dispatch(userLogout());
+        navigate("/Login");
+    }
 
     return(
         <>
@@ -40,6 +52,10 @@ function AccountNav()
                             <Link to="/Admin/Menu" className="col-12 nav-link mb-2">
                                 <p className="fs-4">Menu Manager</p>
                             </Link>
+
+                            <div onClick={(e) => handleLogout(e)} role="button" className="col-12 nav-link mb-2">
+                                <p className="fs-4">Log Out</p>
+                            </div>
     
                         </div>
                     </Navbar>

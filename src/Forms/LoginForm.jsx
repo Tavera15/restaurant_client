@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { userLogin } from "../Features/TokenSlice";
 import { useNavigate } from "react-router-dom";
 
-function LoginForm({setShowLogin})
+function LoginForm()
 {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -40,8 +40,6 @@ function LoginForm({setShowLogin})
                 </div>
                 <Button type="submit" variant="outline-light">Login</Button>
             </Form>
-
-            <p role="button" className="mt-4" onClick={(e) => setShowLogin(false)}>Create new account</p>
         </div>
     );
 }

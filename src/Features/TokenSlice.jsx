@@ -32,21 +32,20 @@ export const verifyToken = createAsyncThunk(
   }
 )
 
+export const userLogout = createAsyncThunk(
+  "user/UserLogout",
+  async () => {
+    document.cookie = "token=; Max-Age=0; path=/"
+    return "";
+  }
+)
+
 export const tokenSlice = createSlice({
   name: "token",
   initialState: {
     value: "",
     isLoading: false,
     hasError: false
-  },
-  reducers: {
-    userLogout: (state, action) => {
-      state.value = "";
-      state.isLoading = false;
-      state.hasError = false;
-
-      document.cookie = "token=; Max-Age=0; path=";
-    },
   },
   extraReducers: (builder) => {
     builder
@@ -102,13 +101,32 @@ export const tokenSlice = createSlice({
 
         document.cookie = "token=; Max-Age=0; path=/";
       })
+      
+      builder
+      .addCase(userLogout.pending, (state, action) => {
+        state.isLoading = true;
+        state.hasError = false;
+        document.cookie = "token=; Max-Age=0; path=/";
+      })
+      .addCase(userLogout.fulfilled, (state, action) => {
+        state.value = "";
+        state.isLoading = false;
+        state.hasError = false;
+        
+        document.cookie = "token=; Max-Age=0; path=/";
+      })
+      .addCase(userLogout.rejected, (state, action) => {
+        state.value= "";
+        state.isLoading = false;
+        state.hasError = true;
+
+        document.cookie = "token=; Max-Age=0; path=/";
+      })
   },
 })
 
 export const selectToken = state => state.token.value;
 export const selectLoadingState = state => state.token.isLoading;
 export const selectErrorState = state => state.token.hasError;
-
-export const { userLogout } = tokenSlice.actions;
 
 export default tokenSlice.reducer;
