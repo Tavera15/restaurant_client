@@ -8,12 +8,6 @@ import { useSelector } from "react-redux";
 function AdminMenuItem({item, num, id, updateFunction})
 {
     const token = useSelector(state => state.token.value);
-    const [categoryName, setCategoryName] = useState("")
-
-    useEffect(() => {
-        axios.get(import.meta.env.VITE_SERVER_API + "/category/" + item.category)
-        .then((res) => console.log(res.data))
-    }, [])
 
     function UpdateMenuItem(e, data)
     {
