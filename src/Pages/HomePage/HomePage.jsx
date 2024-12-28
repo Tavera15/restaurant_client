@@ -8,7 +8,8 @@ import MainNavBar from "../../Components/MainNavBar";
 import about_plate from "../../StaticMedia/about_plate.png"
 import lasagna from "../../StaticMedia/lasagna.png";
 import MusicCard from "../../Components/MusicCard";
-
+import fav3 from "../../StaticMedia/spaghettiwall.jpg";
+import fav4 from "../../StaticMedia/dessertwall.jpg";
 
 function HomePage()
 {
@@ -20,7 +21,7 @@ function HomePage()
                     <img className="welcome-logo" alt="welcome-logo" src={logo} />
                 </div>
 
-                <video src={restVideo} className="rest_video" autoPlay muted loop />
+                <video src={restVideo} className="rest_video" controls={false} autoPlay muted loop />
             </div>
 
             <div className="p-4 col-12 d-flex col flex-wrap align-items-center justify-content-end about-us" >
@@ -46,7 +47,21 @@ function HomePage()
                             </Carousel.Item>
                             <Carousel.Item className="carouselItem">
                                 <img src= "https://www.tastingtable.com/img/gallery/20-italian-dishes-you-need-to-try-at-least-once/lasagna-1702481392.jpg"
-                                alt="fav1" className="col-12" 
+                                alt="fav2" className="col-12" 
+                                style={{
+                                    "height": "30rem",
+                                    "objectFit": "cover"}}/>
+                            </Carousel.Item>
+                            <Carousel.Item className="carouselItem">
+                                <img src= {fav3}
+                                alt="fav3" className="col-12" 
+                                style={{
+                                    "height": "30rem",
+                                    "objectFit": "cover"}}/>
+                            </Carousel.Item>
+                            <Carousel.Item className="carouselItem">
+                                <img src= {fav4}
+                                alt="fav4" className="col-12" 
                                 style={{
                                     "height": "30rem",
                                     "objectFit": "cover"}}/>
